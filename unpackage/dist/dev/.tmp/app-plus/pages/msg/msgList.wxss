@@ -1,0 +1,113 @@
+
+.content.data-v-c31b6560{
+		padding: 0;
+		background: #f2f2f2;
+}
+.msgType.data-v-c31b6560{
+		position: fixed;
+		width:100%;
+		height:196rpx;
+		overflow: hidden;
+		margin-bottom: 20rpx;
+		z-index: 2;
+}
+.msgType .active.data-v-c31b6560{
+		color:#EE3535;
+}
+.whiteBg.data-v-c31b6560{
+		height:76rpx;
+		width:100%;
+		background: #fff;
+}
+.msgType .list.data-v-c31b6560{
+		 background: rgb(15, 174, 255);
+		 height:120rpx;
+}
+.msgType .list>view.data-v-c31b6560{
+		width:687rpx;
+		-webkit-border-radius: 10rpx;
+		        border-radius: 10rpx;
+		background: #fff;
+		margin: 0 auto;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		padding-top: 25rpx;
+}
+.msgType .list .item_list.data-v-c31b6560{
+		-webkit-box-flex:1;
+		-webkit-flex:1;
+		    -ms-flex:1;
+		        flex:1;
+		text-align: center;
+}
+.msg_item>view.data-v-c31b6560{
+		width: 500rpx;
+}
+.msgType .list image.data-v-c31b6560{
+		width:82rpx;
+		height:82rpx;
+		display: block;
+		margin: 0 auto;
+		-webkit-border-radius: 50%;
+		        border-radius: 50%;
+}
+.box.data-v-c31b6560{
+		margin-top: 200rpx;
+}
+.box .title.data-v-c31b6560{
+		background: transparent;
+		color:#333;
+		line-height: 80rpx;
+		text-align: center;
+}
+.box .item_list.data-v-c31b6560{
+		background: #fff;
+		margin-bottom: 20rpx;
+}
+.item_con.data-v-c31b6560{
+		padding: 30rpx;
+}
+.box .item_list>view>view.data-v-c31b6560{
+		display: inline-block;
+		vertical-align: top;
+}
+.box .item_list image.data-v-c31b6560{
+		width:14rpx;
+		height:26rpx;
+		margin-left: 10rpx;
+		display: inline-block;
+}
+.box .item_list .proImg.data-v-c31b6560{
+		width:126rpx;
+		height:126rpx;
+		margin-right: 28rpx;
+		border:1px solid #eee;
+		z-index: 1;
+}
+.msgText.data-v-c31b6560{
+		font-size: 34rpx;
+		color:#333;
+		font-weight: 600;
+		margin-left: -16rpx;
+}
+.footer.data-v-c31b6560{
+		height: 62rpx;
+		line-height: 62rpx;
+		border-top:1px solid #eee;
+		text-align: center;
+}
+.proName.data-v-c31b6560{
+		font-size:32rpx;
+		color:#333;
+		display:-webkit-box;
+		-webkit-line-clamp:2;
+		-webkit-box-orient:vertical;
+		overflow:hidden;
+		-o-text-overflow:ellipsis;
+		   text-overflow:ellipsis;
+		height:80rpx;
+        width:520rpx;
+}
+

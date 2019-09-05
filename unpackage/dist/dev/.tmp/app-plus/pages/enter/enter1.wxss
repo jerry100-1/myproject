@@ -1,0 +1,108 @@
+
+.content.data-v-1ad822e1{
+		padding: 0;
+		background: #F2F2F2;
+}
+.content>view.data-v-1ad822e1{
+		background: #fff;
+		padding:30rpx;
+		margin-bottom: 40rpx;
+}
+.border picker.data-v-1ad822e1{
+		width:500rpx;
+}
+.content>view>view.data-v-1ad822e1{
+		margin-bottom: 20rpx;
+		font-size: 26rpx;
+}
+.title.data-v-1ad822e1{
+		padding-left: 17rpx;
+		border-left:5rpx solid #EE3535;
+		font-size: 28rpx;
+		color:#333;
+}
+input.data-v-1ad822e1{
+		width:400rpx;
+		border-bottom:1px solid #eee;
+		display: inline-block;
+		vertical-align: middle;
+}
+.addImg.data-v-1ad822e1{
+		width:100rpx;
+		height:100rpx;
+		vertical-align: top;
+		margin-right: 10rpx;
+}
+.grey.data-v-1ad822e1{
+		color:#999;
+		vertical-align: bottom;
+		position: relative;
+		bottom: -32px;
+}
+.content text.data-v-1ad822e1{
+		margin-right: 10rpx;
+}
+picker view.data-v-1ad822e1{
+		overflow: hidden;
+		-o-text-overflow:ellipsis;
+		   text-overflow:ellipsis;
+		white-space: nowrap;
+}
+picker.data-v-1ad822e1{
+		vertical-align: middle;
+		display: inline-block;
+		width:160rpx;
+		padding-left: 10rpx;
+		margin-right: 10rpx;
+		-webkit-border-radius: 20rpx;
+		        border-radius: 20rpx;
+		height: 60rpx;
+		line-height:60rpx;
+		position: relative;
+		border:1px solid #eee;
+}
+.uni-icon.data-v-1ad822e1{
+		position: absolute;
+		top:15rpx;
+		right: 20rpx;
+}
+picker input.data-v-1ad822e1{
+		border:none;
+}
+.isFront.data-v-1ad822e1{
+		position: relative;
+}
+.isFront picker.data-v-1ad822e1{
+		width:380rpx;
+}
+.isFront .uni-icon.data-v-1ad822e1{
+		right:140rpx;
+}
+.isFront .position.data-v-1ad822e1{
+		margin-left: 40rpx;
+}
+button.data-v-1ad822e1{
+		width: 525rpx; 
+		height:72rpx;
+		line-height: 72rpx;
+		font-size: 30rpx;
+		text-align: center;
+		background: #EE3535;
+		color:#fff;
+		outline: none;
+		border:none;
+		margin-bottom: 20rpx;
+}
+uni-button.data-v-1ad822e1:after,uni-button.data-v-1ad822e1:before{
+		border:none;
+}
+.inline>view.data-v-1ad822e1{
+		display: inline-block;
+
+		margin-bottom: 20rpx;
+}
+.inline>view view.data-v-1ad822e1{
+		width:118rpx;
+		line-height: 60rpx;
+}
+
