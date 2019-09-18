@@ -1,15 +1,15 @@
 <template>
 	<view class="content">
 		<!-- <view class="top"></view> -->
-		<view class="uni-page-head">
-			<view class="l" style="visibility:hidden;">
+		<view class="uni-page-head" style="display:flex;flex-direction:row;align-items:center;">
+			<view class="" style="flex:1;visibility:hidden;">
 				<image src="../../static/logo@2x.png" alt="" class="logo"></image>
 			</view>
-			<view class="center">
+			<view class="center" style="flex:1;">
 				我的店
 			</view>
-			<view class="r">
-				  <view @tap="url" data-url="/pages/enter/briefIntroduction" style="width:140upx;" class="rightTextMsg">商户简介</view>
+			<view class=""  style="flex:1;">
+				  <view @tap="url" data-url="/pages/enter/briefIntroduction" style="width:140upx;text-align:right;" class="rightTextMsg">商户简介</view>
 				
 			<!-- 	<view @tap="changeDown">
 					<image src="../../static/home/addpng.png" class="add" mode="widthFix" ></image>
@@ -33,36 +33,74 @@
 			</view>
 		</view>
 		
-		<view class="shopInfo">
-			<view class="img">
-				<image :src="shopObj.disPlayImg" @tap="changeImg"></image>
+		<view class="shopInfo"  @click="centerClick1">
+			<view style="display:flex;flex-direction:row;">
+			
+					<view class="img">
+						<image :src="shopObj.disPlayImg" @tap="changeImg"></image>
+					</view>
+					<view style="flex-shrink:0;flex:1;height:80upx;">
+						<view style="width:100%;">
+							 <view style="width:100%;height:40upx;">
+								 <view style="width:56%;height:40upx;float:left;font-size:28upx;text-align:left;">
+									 {{shopObj.shopName}}
+								 </view>
+								 <view style="width:44%;height:40upx;float:right;font-size:28upx;text-align:right;">
+								 	 {{shopObj.levelName}} （{{shopObj.levelName=="C"?'运营商':shopObj.levelName=="B"?'渠道商':shopObj.levelName=="A"?'联盟商家':'联盟商家'}}）					 
+								 </view>
+								 
+							 </view>
+							 <view style="width:100%;height:40upx;">
+								 上次登录:{{shopObj.loginTime}}
+							 </view>
+						</view>
+						
+						
+					</view>
+					
+					<!-- <view style="height:44upx;background:red;float:right;">
+						<view style="height:44upx;width:60%;background:green;float:left;text-overflow:ellipsis;white-space:nowrap;">
+							{{shopObj.shopName}}
+						</view>
+						<view style="height:44upx;width:40%;background:yellow;float:right;text-align:right;text-overflow:ellipsis;white-space:nowrap;">
+							{{shopObj.levelName}} （{{shopObj.levelName=="C"?'运营商':shopObj.levelName=="B"?'渠道商':shopObj.levelName=="A"?'联盟商家':'联盟商家'}}）
+						</view>
+					</view> -->
+				
 			</view>
-			<view>
+	
+			<!-- <view>
 				<view>{{shopObj.shopName}}</view>
 				<view>上次登录:{{shopObj.loginTime}}</view>
 			</view>
 			<view class="r">
 				<view>
-					{{shopObj.levelName}} （{{shopObj.levelName=="C"?'事业部':shopObj.levelName=="B"?'互信版':shopObj.levelName=="A2"?'互爱版':'愉悦版'}}）
+					{{shopObj.levelName}} （{{shopObj.levelName=="C"?'运营商':shopObj.levelName=="B"?'渠道商':shopObj.levelName=="A"?'联盟商家':'联盟商家'}}）
 				</view>
-			</view>
+			</view> -->
 		</view>
-		<view class="proList">
-			<view v-for="(item,index) in textInfo.imgs" :key="index">
-				<image :src="item"></image>
+		<view class="proList" >
+			<!-- <view v-for="(item,index) in textInfo.imgs" :key="index">
+				<image :src="item" @tap="prevMyImg" :id="index"></image>
+			</view> -->
+			
+			<view v-for="(item,index) in filterNewProductList" :key="index">
+				<image :src="item.productImg" :data-productid="item.productId" @tap="goToDetail" :id="index" mode=""></image>				
 			</view>
+			
+			
 		</view>
-		<view class="textInfo">
+		<view class="textInfo" @click="centerClick2">
 			<view>
-				<view>
+				<view @tap="goUrl" data-url="/pages/user/userAdmin">
 					<text>{{textInfo.memberCount}}</text>
 					<view class="text">用户总数</view>
 				</view>
-				<view>
+				<view  @tap="goUrl" data-url="/pages/order/orderList">
 					<text>{{textInfo.orderCount}}</text>
 					<view class="text">订单总数</view>
 				</view>
-				<view>
+				<view  @tap="goUrl" data-url="/pages/capital/index">
 					<text>{{textInfo.sellAmount}}</text>
 					<view class="text">销售金额</view>
 				</view>
@@ -72,7 +110,7 @@
 				</view>
 			</view>
 			<view>
-				<view v-if="shopObj.level*1<3">
+				<view v-if="shopObj.level*1<3" @tap="goUrl" data-url="/pages/enter/index">
 					<text>{{textInfo.aChannelCount}}</text>
 					<view class="text">渠道A数</view>
 				</view>
@@ -80,29 +118,41 @@
 					<text>{{textInfo.a2ChannelCount}}</text>
 					<view class="text">渠道A2数</view>
 				</view> -->
-				<view  v-if="shopObj.level*1<2">
+				<view  v-if="shopObj.level*1<2" @tap="goUrl" data-url="/pages/enter/index">
 					<text>{{textInfo.bChannelCount}}</text>
 					<view class="text">渠道B数</view>
 				</view>
+				
+				
+				<view  @tap="goUrl200" :data-invitebonus="textInfo.inviteBonus" data-url="/pages/capital/index">
+					<text>{{textInfo.inviteBonus}}</text>
+					<view class="text">注册奖励金额</view>
+				</view>
+				
+				<view  @tap="goUrl201" data-url="/pages/capital/index">
+					<text>{{textInfo.jiaoyi||0}}</text>
+					<view class="text">交易补贴金额</view>
+				</view>
+				
 				<!-- <view>
 					<text>{{textInfo.browseCount}}</text>
 					<view class="text">浏览总数</view>
 				</view> -->
 			</view>
 		</view>
-		<view class="banner">
+		<view class="banner" @click="centerClick3">
 			<image src="/static/home/banner.png" alt="" mode="widthFix"></image>
 		</view>
 		<view class="enter">
-			<view>
+			<view @click="centerClick6">
 				
 				<view @tap="url" data-url="/pages/user/userAdmin">
 					<view class="enter_item bg1">
 						<image class="image1" src="/static/home/user.png" style="margin-top:-1upx;" alt="" mode="widthFix"></image>
 						<text class="newTextDesc" style="padding-top:20upx;">用户</text>
-						<image   @click.stop="clickTap" data-index="1" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
+						<image  @click.stop="clickTap" data-index="1" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
 					
-					    <view  v-if="this.index==1" class="addNewView">
+					    <view  v-if="index==1" class="addNewView">
 							 商家直属用户,下级关联用户,交易用户的管理专区,还可对订单评论进行查看,回复等；
 						</view>
 					
@@ -115,9 +165,9 @@
 					<view class="enter_item bg2" @tap="url" data-url="/pages/pro/index">
 						<image class="image1" style="margin-top:-1upx;" src="/static/home/shop.png" alt="" mode="widthFix"></image>
 						<text class="newTextDesc" style="padding-top:20upx;">商品</text>
-						<image   @click.stop="clickTap" data-index="2" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
+						<image  @click.stop="clickTap" data-index="2" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
 											
-						<view  v-if="this.index==2" class="addNewView">
+						<view  v-if="index==2" class="addNewView">
 							发布商品至商家在乐驿享的专属店铺进行线上销售;对出售中,待审核,审核失败的商品进行管理；
 						</view>	
 					</view>
@@ -126,9 +176,9 @@
 					<view class="enter_item bg3" @tap="url" data-url="/pages/order/orderList">
 						<image class="image1" style="margin-top:-1upx;" src="/static/home/order.png" alt="" mode="widthFix"></image>
 						<text class="newTextDesc" style="padding-top:20upx;">订单</text>
-						<image   @click.stop="clickTap" data-index="3" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
+						<image  @click.stop="clickTap" data-index="3" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
 											
-						<view  v-if="this.index==3" class="addNewView">
+						<view  v-if="index==3" class="addNewView">
 							对线上订单和线下订单进行查询,管理,发货,跟踪,对退款订单进行及时处理等;
 						</view>	
 					</view>
@@ -138,9 +188,9 @@
 				 	<view class="enter_item bg4" @tap="url" data-url="/pages/capital/index">
 				 		<image class="image1" style="margin-top:-1upx;" src="/static/home/capt.png" alt="" mode="widthFix"></image>
 				 		<text class="newTextDesc" style="padding-top:20upx;">资金</text>
-						<image   @click.stop="clickTap" data-index="4" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
+						<image  @click.stop="clickTap" data-index="4" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
 											
-						<view  v-if="this.index==4" class="addNewView">
+						<view  v-if="index==4" class="addNewView" id="addNewView4">
 							销售收入,用户返佣,注册奖励,交易补贴的提现;收入金额,发放金额,提现金额的明细报表
 						</view>	
 				 	</view>
@@ -158,18 +208,18 @@
 						<text class="newTextDesc" style="padding-top:20upx;">渠道</text>
 						<image   @click.stop="clickTap" data-index="5" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
 											
-						<view  v-if="this.index==5" class="addNewView">
+						<view  v-if="index==5" class="addNewView">
 							对所属渠道的新增,管理,对渠道资料的修改完善,对商户身份,支付方式的修改确认等;
 						</view>	
 					</view>
 				</view>
 				<view>
-					<view class="enter_item bg7" @tap="url" data-url="/pages/wx/newInvite">
+					<view class="enter_item bg7" @tap="url89" data-url="/pages/wx/wxReceipt">
 						<image class="image1" style="margin-top:-1upx;" src="/static/addImg/icon_home6.png" alt="" mode="widthFix"></image>
 						<text class="newTextDesc" style="padding-top:20upx;">邀请</text>
 						<image   @click.stop="clickTap" data-index="6" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
 											
-						<view  v-if="this.index==6" class="addNewView">
+						<view  v-if="index==6" class="addNewView">
 							通过二维码邀请下级渠道入驻和直属用户注册乐驿享,建立关联关系,获得渠道收入和交易返佣;
 						</view>	
 					</view>
@@ -181,7 +231,7 @@
 						<text class="newTextDesc" style="padding-top:20upx;">消息</text>
 						<image   @click.stop="clickTap" data-index="7" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
 											
-						<view  v-if="this.index==7" class="addNewView">
+						<view  v-if="index==7" class="addNewView">
 								集中管理关于系统,订单,物流,资金入账的消息通知,方便快捷;
 						</view>	
 					</view>
@@ -193,7 +243,7 @@
 						<text class="newTextDesc" style="padding-top:20upx;">设置</text>
 						<image   @click.stop="clickTap" data-index="8" src="/static/addImg/icon_tips@2x.png" style="width:15px;height:15px;z-index:0;"     class="rightImgAb" mode="widthFix"></image>
 											
-						<view  v-if="this.index==8" class="addNewView">	
+						<view  v-if="index==8" class="addNewView" id="addNewView8">	
                              处理包括安全手机,登录密码,取现密码,地址管理,清除缓存等系统功能。
 						</view>		
 					</view>
@@ -203,7 +253,7 @@
 		</view>
 		
 		
-		<view class="msg" v-if="false">
+		<view class="msg" v-if="false" @click="centerClick5">
 			<view>
 				<image src="/static/home/user.png" alt="" mode="widthFix"></image>
 				<view>
@@ -217,15 +267,15 @@
 			</view>
 		</view>
 	
-	      <view class="botText">
+	      <view class="botText" @click="centerClick5">
 	     			 
 				 <view class="botTextInner">
-					 <text class="botTextInnerLeft">联系客服</text>
+					 <text class="botTextInnerLeft" @tap="makePhoneCall">联系客服</text>
 					 <text class="botTextInnerMiddle">
 						 <text class="borderText"></text>
 						 
 					 </text>
-					 <text class="botTextInnerRight">常见问题</text>
+					 <text class="botTextInnerRight" @tap="goProblemPage">常见问题</text>
 				 </view>
 	     			 
 	     </view>
@@ -249,12 +299,138 @@
 				index:0,
 				invite: "",//13327313408
 				isDown: false, //是否显示微信收款等下拉
+				newProductList:[],
+				filterNewProductList:[]
 			}
 		},
 		methods: {
-			myClick:function(e)
+			goUrl200:function(e)
 			{
-				console.log("点击了。。。")
+		      uni.navigateTo({
+		      	url:e.currentTarget.dataset.url
+		      })
+			},
+			goUrl201:function(e){
+				uni.navigateTo({
+					url:e.currentTarget.dataset.url
+				})
+			},
+			//查询数据
+			searchIndexData(){
+				let that=this;
+					that.$ajax({
+						url:"/shopProduct/selectShopProduct",
+						method:"POST",
+						data:{
+							shopId:that.shopObj.shopId,
+							type:1,
+							pageNo:1
+						},
+						success(d){
+						  console.log("这是首页获取所有商品的数据-------"+d);
+						  
+						  console.log("这是列表的数据的长度"+d.lists.length);
+						  that.newProductList=d.lists;
+						  that.filterNewProductList=that.newProductList.filter((item,index)=>index<4);
+						  console.log("这是过滤后的数据"+that.filterNewProductList);
+						  
+						},
+					})
+					
+			},
+			goToDetail:function(e)
+			{
+			 console.log("你好,我获取的产品的id是"+e.currentTarget.dataset.productid);
+				uni.navigateTo({
+					url:"/pages/pro/proSee?productId="+e.currentTarget.dataset.productid
+				}) 
+				 
+			},		
+			tap:function(url)
+			{
+				uni.navigateTo({
+					url:url
+				});
+			},
+			goUrl2:function(e)
+			{
+				console.log("你好,我得到的url是"+e.currentTarget.dataset.url);
+				let url=e.currentTarget.dataset.url;
+				let invitebonus=e.currentTarget.dataset.invitebonus;
+				console.log("你好,得到的invitebonus是"+invitebonus);
+				uni.navigateTo({
+					url:url+"?invitebonus="+invitebonus
+				});
+			},
+			goUrl:function(e)
+			{
+				console.log("你好,我得到的url是"+e.currentTarget.dataset.url);
+				let url=e.currentTarget.dataset.url;
+				uni.navigateTo({
+					url:url
+				});
+			},
+			makePhoneCall:function()
+			 {
+				 
+				uni.showModal({
+				    title: '温馨提示',
+				    content: '是否拨打客服电话',
+				    success: function (res) {
+				        if (res.confirm) {
+				            console.log('用户点击确定');
+							
+							uni.makePhoneCall({
+							     phoneNumber: '13327313408' //仅为示例
+							 });
+							
+							
+				        } else if (res.cancel) {
+				            console.log('用户点击取消');
+				        }
+				    }
+				}); 
+				 
+				 
+				 
+			},
+			goProblemPage:function()
+			{
+				console.log("你好,你点击了这个按钮!!!");
+				uni.navigateTo({
+					url:"../../pages/user/commonProblem"
+				})
+			},
+			
+			centerClick1:function(e)
+			{
+				console.log("点击了。。。");
+				this.index=-1;
+			},
+			centerClick4:function(e)
+			{
+				console.log("点击了。。。");
+				this.index=-1;
+			},
+			centerClick3:function(e)
+			{
+				console.log("点击了。。。");
+				this.index=-1;
+			},
+			centerClick2:function(e)
+			{
+				console.log("点击了。。。");
+				this.index=-1;
+			},
+			centerClick5:function(e)
+			{
+				console.log("点击了。。。");
+				this.index=-1;
+			},
+			centerClick6:function(e)
+			{
+				console.log("点击了。。。");
+				this.index=-1;
 			},
 			clickTap:function(e)
 			{
@@ -276,6 +452,7 @@
 			},
 			//更换店铺图片
 			changeImg(){
+				console.log("你好,被点击了-----");
 				let that=this;
 				uni.chooseImage({
 					count: 1, //默认9
@@ -308,6 +485,47 @@
 					},
 				});
 			},
+			// 
+			// 
+			// 从相册选择6张图
+			// prevMyImg:function(e)
+			// {
+			// 	console.log("你好");
+			// 	console.log("你好,点击了图片预览的按钮!");
+			// 	console.log("相关的图片的信息是"+this.textInfo.imgs[0]);
+			// 	console.log("相关的图片的信息是"+this.textInfo.imgs[1]);
+			// 	console.log("相关的图片的信息是"+this.textInfo.imgs[2]);
+			// 	console.log("相关的图片的信息是"+this.textInfo.imgs[3]);
+			// 	console.log("相关的图片的长度是"+this.textInfo.imgs.length);
+			// 	 this.index=-1;
+			// 	 let that=this;
+			// 	         // 预览图片
+			// 		 uni.previewImage({
+			// 			 urls: that.textInfo.imgs,
+			// 			 longPressActions: {
+			// 				 // itemList: ['发送给朋友', '保存图片', '收藏'],
+			// 				 itemList: ['发送给朋友', '保存图片', '收藏'],
+			// 				 success: function(data) {
+			// 					 console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+			// 				 },
+			// 				 fail: function(err) {
+			// 					 console.log(err.errMsg);
+			// 				 }
+			// 			 }
+			// 		 });	
+			// 	
+			// },
+			// 
+			
+		  prevMyImg(res){  
+				var  myindex = res.currentTarget.id;  
+				console.log("你好,当前的id是"+myindex);
+				
+				uni.previewImage({  
+					urls:this.textInfo.imgs,  
+					current:myindex  
+				})  
+			} ,
 			uploadImg(src){
 				let that=this;
 				that.$ajax({
@@ -331,11 +549,20 @@
 					url: e.currentTarget.dataset.url
 				})
 			},
+			url89:function(e)
+			{
+				//1c 2b 3a
+				let that=this;
+				console.log("当前的level是"+that.shopObj.level);
+				uni.navigateTo({
+					url: e.currentTarget.dataset.url+"?level="+that.shopObj.level
+				})
+			},
 			url2(e)
 			{
 				let that=this;
 				uni.navigateTo({
-					url: e.currentTarget.dataset.url+"?merchantId="+that.merchantId
+					url: e.currentTarget.dataset.url
 				})
 			},
 			changeDown(e) {
@@ -376,6 +603,10 @@
 							shopId: that.shopObj.shopId
 						},success(d){		
 							that.textInfo=d;
+							
+							console.log("你好,这是首页的商品图片的信息");
+							console.log("你好,这是首页的所有的信息"+d);
+							
 							that.isExistsOfflinePayQR()
 						}
 					})
@@ -384,7 +615,7 @@
 		},
 		onLoad() {
 			let that=this;
-			
+		
 			uni.getStorage({
 				key:"shopObj",
 				success(res){
@@ -421,7 +652,11 @@
 						});
 					}
 				}
-			})
+			})	
+			
+				that.searchIndexData();
+			
+			
 		}
 	}
 </script>
@@ -435,19 +670,23 @@
 	}
 	
 	.addNewView{
-      /*  width:260upx; */
-		/* height:160upx; */
-		padding:6upx 8upx;
+       width:266upx; 
+	   min-height:140upx;
+		padding:8upx 10upx;
 		border:1px solid rgba(0,0,0,0.18);
 		position:absolute;
-		z-index:200;
-		font-size:16upx;
+		z-index:10;
+		font-size:28upx;
 		color:rgba(0,0,0,0.66);
 		background:#fff;
 		/* left:-5px; */
 		border-radius:20upx;
-		top:-120upx;
+		top:-100upx;
 	}
+	#addNewView4,#addNewView8{
+		left:-120upx;
+	}
+
 	/* .addNewView:nth-of-type(1)
 	{
 		margin-left:80upx;
@@ -467,7 +706,7 @@
 		height:80upx;
 		display:flex;
 		align-items:center;
-		margin-top:100upx;
+		margin-top:0upx;
 		background:#f2f2f2!important;
 	}
 	
@@ -543,8 +782,8 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		text-align: center;
-		padding: 40upx 30upx 0;
+		text-align: center;		
+		padding: 20upx 30upx 0;
 		z-index: 10000;
 		color: #fff;
 	}
@@ -669,7 +908,7 @@
 	}
 
 	.enter {
-		padding-bottom: 60upx;
+		padding-bottom: 40upx;
 	}
 
 	.enter>view {
@@ -780,6 +1019,10 @@
 		right:10upx;
 		top:10upx;	
 	}
+	.rightTextMsg{
+		position: relative;
+		left:60upx;
+		}
 		
 /* 	.rightTextMsg{
 		background:red;

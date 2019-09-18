@@ -1,10 +1,10 @@
 <template>
 	<view class="content">
 		<view class="fiex">
-			<view class="border" v-bind:class="{ active: type==1 }" @tap="change(1)">
+			<view class="border" v-bind:class="{active:type==1 }" @tap="change(1)">
 				<text>交易中（元）</text>
 			</view>
-			<view v-bind:class="{ active: type==2 }"  @tap="change(2)">
+			<view v-bind:class="{active:type==2 }"  @tap="change(2)">
 				<text>结算中（元）</text>
 			</view>
 		</view>
@@ -13,10 +13,11 @@
 				<view class="money">{{type==1?'交易中订单金额':'结算中订单金额'}} : <text class="color">￥{{type==1?(money||0):(money1||0)}}元</text> </view>
 			</view>
 			<view class="list">
-				<view class="item_list" v-for="(item,index) in dataList" :key="index">
+				<!-- 注意此处的高度,25号 -->
+				<view class="item_list" style="height:340upx;" v-for="(item,index) in dataList" :key="index">
 					<view>
 						<text>订单支付时间:{{item.createTime}}</text>
-						<text class="r">结算中</text>
+						<text class="r">{{type==1?"交易中":"结算中"}}</text>
 					</view>
 					<view class="box">
 						<view>
@@ -26,17 +27,25 @@
 							<view class="title">{{item.productName||item.itemTitle||""}}</view>
 							
 							<view style="margin-top:-60upx;">
-								<text class="price">支付方式--普通支付</text>
-								<text class="r">分享佣金比例 8%</text>
+					<!-- 			<text class="price">{{item.payment==1?"联盟支付":"普通支付"}}</text> -->
+					            <text class="price">{{item.payment==1?"联盟支付":"普通支付"}}</text>
+								</br>
+								<text v-if="item.payment==1">联盟经费:{{item.productRatio}}%</text>
+								<text class="r" v-if="item.commissionRatio">分享佣金比例{{item.commissionRatio||""}}%</text>
 							</view>
-							
-							
 							<view>
 								<text class="price">￥{{item.payMoney||item.alipayTotalPrice||""}}</text>
 								<text class="r">x{{item.productNum||item.itemNum||""}}</text>
 							</view>
 						</view>
 					</view>
+					
+					<view  class="wrapLookExpress" style="">
+						<view class="lookExpressText" :data-tradeno="item.tradeNo" :data-trackingnumber="item.trackingNumber" :data-expresscompany="item.expressCompany" @tap="lookExpressDetail">查看物流</view>
+					</view>
+					
+				
+				   
 				</view>
 				
 				<uni-load-more :status="status"></uni-load-more>
@@ -70,8 +79,18 @@
 			this.search()
 		},
 		methods:{
+			lookExpressDetail:function(e)
+			{
+				console.log("你好，得到的tradeNo是"+e.currentTarget.dataset.tradeno);
+				console.log("你好，得到的expressCompany是"+e.currentTarget.dataset.expresscompany);
+				console.log("你好，得到的trackingNumber是"+e.currentTarget.dataset.trackingnumber);
+				uni.navigateTo({
+					url:"/pages/order/logistics?expressName="+e.currentTarget.dataset.expresscompany+"&expressNo="+e.currentTarget.dataset.trackingnumber
+				})
+			},
 			change(num){
 				this.type=num;
+				console.log("你好,这是num"+this.type);
 				this.dataList=[];
 				this.pageNo=1;
 				this.pageAll=2;
@@ -98,6 +117,9 @@
 							},
 						},
 						success(d){
+							
+							console.log("你好,这是带结算接口返回的所有数据信息"+d);
+							
 							that.pageNo=that.pageNo*1+1;
 							that.pageAll=d.totalPage
 							console.log(d);
@@ -134,9 +156,58 @@
 </script>
 
 <style scoped>
+	.textFlex1{
+		width:100%;
+		height:100upx;
+		display:block;
+		border-top:1px solid rgba(0,0,0,0.08);
+		margin-top:20upx;
+	}
+	.textFlex2{
+		width:180upx;
+		height:45upx;
+		line-height:45upx;
+		border:1px solid rgba(0,0,0,0.18);
+		font-size:26upx;
+		text-align:center;
+		display:block;
+		position:relative;
+		top:8upx;
+		float:right;
+		margin-right:20upx;
+		border-radius:30upx;
+	}
+	.textFlex3{
+		width:100%;
+		height:22upx;
+		background:rgba(0,0,0,0.10);
+		border-top:1px solid rgba(0,0,0,0.12);
+		border-bottom:1px solid rgba(0,0,0,0.12);
+		display:block;
+		position:relative;
+		top:65upx;
+	}
 	.content{
 		background: #f2f2f2;
 		padding: 0;
+	}
+	.wrapLookExpress{
+		width:100%;
+		height:60upx;
+		border-top:1px solid rgba(0,0,0,0.08);
+	    display:flex;
+		flex-direction:row;
+		justify-content:flex-end;
+	}
+	.lookExpressText{
+		width:140upx;
+		height:46upx;
+		border:1px solid rgba(0,0,0,0.18);
+		border-radius:26upx;
+		margin-top:8upx;
+		text-align:center;
+		margin-right:80upx;
+		line-height:46upx;
 	}
 	.boxs{
 		margin-top: 88upx;
@@ -169,7 +240,7 @@
 		padding: 0 30upx;
 	}
 	.item_list{
-		height: 280upx;
+		height: 360upx;
 		background: #fff;
 		border-top:1px solid #eee;
 	}

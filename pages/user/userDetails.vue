@@ -48,7 +48,7 @@
 			</view>
 			<view>
 				<text>消耗总金额:</text>
-				<text class="color">{{dataObj.allInvitationUserMonetary||"0"}}</text>
+				<text class="color">{{(dataObj.allInvitationUserMonetary).toFixed(2)||"0"}}</text>
 				<text>元</text>
 			</view>
 			<view>

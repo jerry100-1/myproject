@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "待结算明细",
+  "navigationBarTitleText": "交易明细",
   "usingComponents": {
     "uni-load-more": "/components/uni-load-more/uni-load-more"
   }

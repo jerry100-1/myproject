@@ -2,8 +2,8 @@
     "name" : "乐驿享商家版",
     "appid" : "__UNI__99075FA",
     "description" : "商家",
-    "versionName" : "1.2.0",
-    "versionCode" : 107,
+    "versionName" : "1.2.4",
+    "versionCode" : 140,
     "transformPx" : false,
     "networkTimeout" : {
         "request" : 100000
@@ -58,7 +58,8 @@
                 ],
                 "privacyDescription" : {
                     "NSPhotoLibraryUsageDescription" : "发布商品时从相册中选择图片作为商品图片",
-                    "NSPhotoLibraryAddUsageDescription" : "保存邀请用户的邀请码"
+                    "NSPhotoLibraryAddUsageDescription" : "保存邀请用户的邀请码",
+                    "NSCameraUsageDescription" : "上传商品图片或资质图片至平台"
                 }
             },
             /* ios打包配置 */
@@ -112,12 +113,12 @@
                     }
                 },
                 "android" : {
-                    "xxxhdpi" : "static/app_icon/app_icon@192x192.png",
+                    "xxxhdpi" : "static/app_icon/app_icon@512x512.png",
                     "mdpi" : "static/app_icon/app_icon@48x48.png",
                     "ldpi" : "static/app_icon/app_icon@48x48.png",
-                    "hdpi" : "static/app_icon/app_icon@72x72.png",
-                    "xhdpi" : "static/app_icon/app_icon@96x96.png",
-                    "xxhdpi" : "static/app_icon/app_icon@144x144.png"
+                    "hdpi" : "static/app_icon/app_icon@192x192.png",
+                    "xhdpi" : "static/app_icon/app_icon@256x256.png",
+                    "xxhdpi" : "static/app_icon/app_icon@384x384.png"
                 }
             },
             "splashscreen" : {
@@ -151,7 +152,7 @@
                     }
                 },
                 "android" : {
-                    "hdpi" : "static/start-up/Android/480x762.png",
+                    "hdpi" : "static/app_icon/app_icon@20x20.png",
                     "xhdpi" : "static/start-up/Android/720x1242.png",
                     "xxhdpi" : "static/start-up/Android/1080x1882.png"
                 }

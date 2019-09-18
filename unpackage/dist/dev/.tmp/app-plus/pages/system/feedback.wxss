@@ -1,9 +1,9 @@
 
-.content.data-v-eac0bff8{
+.content.data-v-610a9094{
 	background: #f2f2f2;
 	padding: 0;
 }
-textarea.data-v-eac0bff8{
+textarea.data-v-610a9094{
 	background: #fff;
 	width:100%;
 	-webkit-box-sizing: border-box;
@@ -11,14 +11,13 @@ textarea.data-v-eac0bff8{
 	margin-bottom: 60rpx;
 	padding: 30rpx;
 }
-button.data-v-eac0bff8{
+button.data-v-610a9094{
 	width:574rpx;
 	height:75rpx;
 	text-align: center;
 	line-height: 75rpx;
 	font-size: 30rpx;
 	background: #2D93FF;
-	-webkit-border-radius: 50rpx;
-	        border-radius: 50rpx;
+	border-radius: 50rpx;
 }
 

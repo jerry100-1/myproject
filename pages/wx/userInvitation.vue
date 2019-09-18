@@ -1,5 +1,19 @@
 <template>
 	<view class="content">
+		
+		
+		
+		<view class="top" style="display:flex;flex-direction:row;width:90%;margin-left:5%;margin-top:0upx;margin-bottom:60upx">
+			<view  style="flex:1;" @click="go1">
+			   微信收款
+			</view>
+			<view  style="flex:1" @click="go2" v-if="level==2||level==1">渠道邀请</view>
+			<view  style="flex:1" @click="go3">
+				<text style="color:#007AFF;border-bottom:2px solid #007AFF;padding-bottom:10upx;">用户邀请</text>	
+		     </view>
+		 </view>
+		
+		
 		<canvas canvas-id="myCanvas" id="canvas"></canvas>
 		<view v-if="type==0" class="box">
 			<image src="../../static/invite/invite_3.png" mode="wwidthFix" class="code1"></image>
@@ -16,10 +30,10 @@
 			</view>
 		</view>
 		
-		<view class="btns">
+		<view class="btns" style="margin-top:-20upx;">
 			<button @tap="copy" class="copy">复制邀请码</button>
 			<button @tap="save">保存图片</button>
-			<text @tap="service">联系客服</text>
+			<text @tap="service" style="position:relative;top:-100upx;">联系客服</text>
 		</view>
 	
 	</view>
@@ -32,7 +46,8 @@
 				invitaionCode:"",
 				type: 2,
 				tempFilePath:"",
-				src:""
+				src:"",
+				level:""
 			}
 		},
 		onLoad(e) {
@@ -41,6 +56,7 @@
 			 	key:"shopObj",
 			 	success(res){
 			 		let shopObj=JSON.parse(res.data);
+					that.level=shopObj.level;
 					shopObj.merchantId+=""
 					var num="";
 					for(let i=0,len=8-shopObj.merchantId.length;i<len;i++){
@@ -48,7 +64,7 @@
 					}
 					num+=shopObj.merchantId;
 					that.invitaionCode=num;
-			 		that.src="https://wx.hnlxyj.com/user/share/qrCode?block=1&width=800&height=800&url=http://www.hnlxyj.com/wx/register/register.html?marchantId="+shopObj.merchantId
+			 		that.src="https://wx.hnlxyj.com/user/share/qrCode?block=1&width=800&height=800&url=http://www.hnlxyj.com/wx/#/pages/user/enter1?marchantId="+shopObj.merchantId
 			 	}
 			})
 			this.type=e.type
@@ -62,6 +78,29 @@
 			})
 		},
 		methods: {
+			
+			go1:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/wxReceipt?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			go2:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/channel?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			go3:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/userInvitation?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			
+			
+			
+			
 			copy(){
 				uni.setClipboardData({
 					data: this.invitaionCode,

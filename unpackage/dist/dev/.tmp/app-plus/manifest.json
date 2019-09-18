@@ -7,8 +7,8 @@
   "id": "__UNI__99075FA",
   "name": "乐驿享商家版",
   "version": {
-    "name": "1.0.0",
-    "code": 102
+    "name": "1.2.4",
+    "code": 140
   },
   "description": "商家",
   "launch_path": "__uniappview.html",
@@ -78,12 +78,12 @@
           }
         },
         "android": {
-          "xxxhdpi": "static/app_icon/app_icon@192x192.png",
+          "xxxhdpi": "static/app_icon/app_icon@512x512.png",
           "mdpi": "static/app_icon/app_icon@48x48.png",
           "ldpi": "static/app_icon/app_icon@48x48.png",
-          "hdpi": "static/app_icon/app_icon@72x72.png",
-          "xhdpi": "static/app_icon/app_icon@96x96.png",
-          "xxhdpi": "static/app_icon/app_icon@144x144.png"
+          "hdpi": "static/app_icon/app_icon@192x192.png",
+          "xhdpi": "static/app_icon/app_icon@256x256.png",
+          "xxhdpi": "static/app_icon/app_icon@384x384.png"
         }
       },
       "splashscreen": {
@@ -117,7 +117,7 @@
           }
         },
         "android": {
-          "hdpi": "static/start-up/Android/480x762.png",
+          "hdpi": "static/app_icon/app_icon@20x20.png",
           "xhdpi": "static/start-up/Android/720x1242.png",
           "xxhdpi": "static/start-up/Android/1080x1882.png"
         }
@@ -161,7 +161,8 @@
         ],
         "privacyDescription": {
           "NSPhotoLibraryUsageDescription": "发布商品时从相册中选择图片作为商品图片",
-          "NSPhotoLibraryAddUsageDescription": "保存邀请用户的邀请码"
+          "NSPhotoLibraryAddUsageDescription": "保存邀请用户的邀请码",
+          "NSCameraUsageDescription": "上传商品图片或资质图片至平台"
         }
       },
       "plugins": {
@@ -197,9 +198,10 @@
     "arguments": "{\"name\":\"\",\"query\":\"\",\"id\":0,\"pathName\":\"pages/login/login\"}",
     "allowsInlineMediaPlayback": true,
     "uni-app": {
-      "compilerVersion": "2.0.1",
+      "compilerVersion": "2.2.2",
       "control": "v8",
-      "nvueCompiler": "weex"
+      "nvueCompiler": "weex",
+      "renderer": "auto"
     }
   }
 }

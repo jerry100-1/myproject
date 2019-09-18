@@ -16,8 +16,8 @@
 					<text class="color">￥{{proObj.shopProduct.productmminmoney||0}}</text>
 					<text class="agoramoney">￥{{proObj.shopProduct.agoramoney||0}}</text>
 					<view class="r">
-						<image src="http://www.hnlxyj.com/wx/image/mall/time_coins@2x.png" mode=""></image>
-						<text>预送 <text class="color">{{proObj.timeBean||0}}</text> 时光豆</text>
+						<image src="../../static/dou.png" mode=""></image>
+						<text>购买预获 <text class="color">{{proObj.timeBean||0}}</text> 时光豆</text>
 					</view>
 					<view class="title">
 						<view class="h5">{{proObj.shopProduct.productname}}</view>
@@ -26,9 +26,11 @@
 							<text>分享</text>
 						</view>
 					</view>
-						
+						<view class="add1" style="">新增分享的佣金12元</view>		
+						</view>
+				
 					<view class="foot">
-						<view></view>
+						<view>新增快递:10元</view>
 						<view>
 							月销  {{proObj.monthSales||0}}
 						</view>
@@ -39,8 +41,9 @@
 				</view>
 				
 			</view>
-			<view class="list" v-if="proObj.coupon">
+			<view class="list" >
 				<text>优惠</text>
+				<text class="add2">店铺优惠券</text>
 				<view class="r">
 					<text>领券</text>
 					<uni-icon type="arrowright" size="16"></uni-icon>
@@ -99,10 +102,57 @@
 				proObj:{},
 				proImgs:[],
 				proId:"",
+				shopObj:{},
+				marchantId:"",
 			}
 		},
 		onLoad(e){
+			console.log("你好,预览页面得到的productId是"+e.productId);
 			this.proId=e.productId;
+			let that=this;
+			uni.getStorage({
+				key:"shopObj",
+				success(res){
+					console.log(res)
+					that.shopObj=JSON.parse(res.data);
+					that.merchantId=that.shopObj.merchantId;
+					console.log("你好,我获取的shopObj是"+that.shopObj)
+					console.log("你好,我获取的mechardId是"+that.shopObj.merchantId);
+					console.log(that.shopObj)
+					if (!that.shopObj.shopId) {
+						uni.showModal({
+							title: '未登录',
+							content: '登录失效，需要登录后才能继续',
+							/**
+							 * 如果需要强制登录，不显示取消按钮
+							 */
+							showCancel: !that.forcedLogin,
+							success: (res) => {
+								if (res.confirm) {
+									// /**
+									//  * 如果需要强制登录，使用reLaunch方式
+									//  */
+									if (that.forcedLogin) {
+										uni.reLaunch({
+											url: '../login/login'
+										});
+									} else {
+										uni.reLaunch({
+											url: '../login/login'
+										});
+									}
+								}
+							}
+						});
+					}
+				}
+			})	
+			
+			
+			
+			
+			
+		
 		},
 		onShow(){
 			let that=this;
@@ -110,14 +160,21 @@
 				url:"/shopProduct/selectProductDetails",
 				method:"POST",
 				data:{
-					productId:that.proId
+					productId:that.proId,
+					shopId:that.shopObj.shopId,
+					pageNo:1,
+					type:1,
 				},
 				success(d){
 					that.proImgs=[{originalmedia:d.shopProduct.originalimg}]
 					let arr=that.proImgs;
 		
 					that.proImgs=arr.concat(d.productMedia||[])
+					console.log("这是预览页面的数据信息----");
+					console.log(d);
 					that.proObj=d
+					//console.log("909090"+that.proObj.productLess.productdescribe);
+					console.log("9090909"+d.shopProduct.originalimg);
 				}
 			})
 		}
@@ -136,6 +193,28 @@
 		display: inline-block;
 		vertical-align: middle;
 		margin-left: 10upx;
+	}
+	.add1{
+		background:#ee3535;
+		padding:12upx 20upx;
+		max-width:240upx;
+		font-size:24upx;
+		color:#fff;
+		border-radius:30upx;
+		width:auto;
+		margin-top:20upx;
+		margin-bottom:20upx;
+		text-align:center;
+	}
+	.add2{
+		width:140upx;
+		height:30upx;
+		background:#ee3535;
+		color:#fff;
+		padding:4upx 20upx;
+		border-radius:20upx;
+		margin-left:20upx;
+		font-size:20upx;
 	}
 	.swiper{
 		height:750upx !important;

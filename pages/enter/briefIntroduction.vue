@@ -3,7 +3,7 @@
 
 	   <view class="content">
 		   
-		   <view class="" style="height:30upx;width:100%;background: #00BFFF;">
+		   <view class="" style="height:60upx;width:100%;background:#00BFFF;position:fixed;top:0;z-index:10;overflow:hidden;">
 				<view  style="width:25%;color:#fff;float:left">
 				<!-- 	<image src="../../static/logo@2x.png" alt="" class="logo" style="width:52upx;
 		margin-top:0upx;
@@ -14,36 +14,38 @@
 		       	 <!-- <image src="../../static/addImg/icon_home1.png" mode=""></image>	 -->
 				 <!-- &lt; -->
 				   <!-- <image src="" mode=""></image> -->
-				   <image @click="goBack" class="leftArrowImg" src="../../static/addImg/leftArrow.png" mode=""></image>
+				   <text class="iconfont icon-xiangzuojiantou" style="font-size:150%;position:relative;top:15upx;"  @click="goBack"></text>
+				   <!-- <image @click="goBack" class="leftArrowImg" src="../../static/wwe.png" mode="" style="margin-top:10upx"></image> -->
 				   <!-- <i class="uni-btn-icon"></i> -->
 				</view>
-				<view  style="float:left;width:50%;height:60upx;margin-top:-20upx;text-align:center;line-height:80upx;color:#fff;font-size:30upx;">
+				<view  style="float:left;width:50%;height:60upx;margin-top:-10upx;text-align:center;line-height:80upx;color:#fff;font-size:30upx;">
 					商户简介
 				</view>
 			
-			   <view @click="firstAddMed" style="float:right;width:25%;height:80upx;margin-top:0upx;color:#fff;text-align:center;font-size:30upx;"   class="rightTextMsg">
+			   <view @tap="firstAddMed" style="float:right;width:25%;height:80upx;margin-top:10upx;color:#fff;text-align:center;font-size:30upx;"   class="rightTextMsg">
 				   保存
 			   </view>
 			  
 		   </view>
 		   
 		   
-			<view style="margin-top:-40upx;">
+			<view style="margin-top:110upx;">
 					<view class="title">店铺信息</view>
 					
 					<view class="shopItemRespe">
-						<text>店铺名称</text>
-						<input type="text" class="InputShuRu" v-model="shopName" />
+						<text style="display:inline-block;vertical-align:middle;">店铺名称</text>
+						<input type="text" class="InputShuRu" v-model="shopName"   style="display:inline-block;vertical-align:middle;width:60%;"/>
 					</view>
 					
 					<view class="shopItemRespe">
-						<text>实体店铺</text>
+						<text style="display:inline-block;vertical-align:middle;">实体店铺</text>
 						
-						<view class="uni-list">
+						<view class="uni-list" style="display:inline-block;vertical-align:middle;margin-left:30upx;border:1px solid rgba(0,0,0,0.26);padding:5upx 60upx;">
 							   <view class="uni-list-cell">
 								   <view class="uni-list-cell-db">
 									   <picker @change="bindPickerChange" :value="index" :range="array">
-										   <view class="uni-input">{{array[index]}}</view>
+										   <view class="uni-input" style="display:inline-block;vertical-align:middle;">{{array[index]}}</view>
+										   <text class="iconfont icon-iconset0417" style="display:inline-block;vertical-align:middle;margin-left:50upx;margin-top:5upx"></text>
 									   </picker>
 								  </view>
 							  </view>
@@ -56,42 +58,46 @@
 					</view>
 					<!-- 公司地址 -->
 					<view class="shopItemRespe">
-						<text>门店地址</text>
+						<text style="display:inline-block;vertical-align:middle;">门店地址</text>
 					  
 					  <picker class="ssqpicker"   :range="shopAddressP" @change="shopAddressPChange" range-key="proName">
-						<view>{{shopAddressP[pIndex].proName}}</view>
+						<view style="display:inline-block;vertical-align:middle;">{{shopAddressP[pIndex].proName}}</view>
+						<text  class="iconfont icon-iconset0417" style="display:inline-block;vertical-align:middle;margin-left:6upx;margin-top:5upx"></text>
 					  </picker>
 					  <picker class="ssqpicker"   :range="shopAddressC" @change="shopAddressChange" range-key="proName">
-						<view>{{shopAddressC[cIndex].proName}}</view>
+						<view style="display:inline-block;vertical-align:middle;">{{shopAddressC[cIndex].proName}}</view>
+						<text  class="iconfont icon-iconset0417" style="display:inline-block;vertical-align:middle;margin-left:6upx;margin-top:5upx"></text>
 					  </picker>
 					  <picker class="ssqpicker"   :range="shopAddressX" @change="shopAddressXChange" range-key="disName">
-						<view>{{shopAddressX[xIndex].disName}}</view>
+						<view style="display:inline-block;vertical-align:middle;">{{shopAddressX[xIndex].disName}}</view>
+						<text  class="iconfont icon-iconset0417" style="display:inline-block;vertical-align:middle;margin-left:6upx;margin-top:5upx"></text>
 					  </picker>
 					  
-					
-					
-					
-					
+					  
+					  <uni-icon type="location" size="16" @tap="map" v-show="isFrontArrIndex==0"></uni-icon>
+					  <text class="position" @tap="map" v-show="isFrontArrIndex==0" style="font-size:20upx;">定位</text>
+					 
+					  
 					
 					</view>
 					
 					<view class="shopItemRespe">
-						<text>详细地址</text>
-						<input class="InputShuRu" type="text" v-model="detailAddress" />
+						<text style="display:inline-block;vertical-align:middle;">详细地址</text>
+						<input class="InputShuRu" type="text" v-model="detailAddress"  style="display:inline-block;vertical-align:middle;width:60%"/>
 					</view>
 					
 					<view class="shopItemRespe">
-						<text>人均消费</text>
-						<input class="InputShuRu" type="number" v-model="personConsume" />元
+						<text style="display:inline-block;vertical-align:middle;">人均消费</text>
+						<input class="InputShuRu" type="number" v-model="personConsume"  style="display:inline-block;vertical-align:middle;width:60%;"/>元
 					</view>
 					
-					<view class="shopItemRespe">
+					<view class="shopItemRespe" style="padding-bottom:40upx">
 						<view style="display:block;float:left;">营业时间</view>
 							
 						<view class="uni-list lefttime" style="display:inline-block;float:left;">
 							<view class="uni-list-cell">
 								<view class="uni-list-cell-db" >
-									<picker mode="time" :value="time1" start="09:01" end="23:01" @change="bindTimeChange">
+									<picker mode="time" :value="time1" start="09:01" end="23:01"  @change="bindTimeChange">
 										<view class="uni-input">{{time1}}</view>
 									</picker>
 								</view>
@@ -109,19 +115,19 @@
 								</view>
 							</view>
 						</view>
-	=
+	
 					</view>
 					
 				
 					
-					<view class="shopItemRespe">
-						<text>客服电话</text>
-						<input class="InputShuRu" type="number" v-model="phoneNum" />
+					<view class="shopItemRespe" style="margin-top:40upx">
+						<text style="display:inline-block;vertical-align:middle;">客服电话</text>
+						<input class="InputShuRu" type="number" v-model="phoneNum" style="display:inline-block;vertical-align:middle;width:60%;"/>
 					</view>
 					
 					<view class="shopItemRespe">
-						<text>客服微信</text>
-						<input class="InputShuRu" type="text" v-model="customWeiXin" />
+						<text style="display:inline-block;vertical-align:middle;">客服微信</text>
+						<input class="InputShuRu" type="text" v-model="customWeiXin" style="display:inline-block;vertical-align:middle;width:60%;"/>
 					</view>
 						
 					<view class="shopItemRespe">
@@ -131,11 +137,41 @@
 					</view>
 					
 					
-					<view class="shopItemRespe">
+					<!-- <view class="shopItemRespe">
 						<text>店内环境照片</text>
 						<image :src="upSrc2||defSrc2" class="addImg"  @tap="proImgsChoose2"></image>
 						<text class="grey">上传正方形图片,大小不超过1M</text>
+					</view> -->
+					
+					
+					
+					<view style="margin-top:20upx;">
+						<text>店内环境照片</text>
+						<view class="right" style="margin-left:100upx;">
+							<view  class="imgs" v-for="(item,index) in proImgs" v-if="proImgs.length>0" :key="index">
+								<image  :src="item"></image>
+								<view @tap="del(index,1)" class="del">删除</view>
+							</view>
+							<image style="display:inline-block;width:160upx;height:160upx;" src="../../static/capital/my_add_image@2x.png" @tap="proImgsChoose3(1)" ></image>
+						</view>
+						
+						<view class="textInfo" style="margin-left:120upx;margin-right:60upx;margin-top:20upx;">
+							<text>上传商品图片,图片支持jpg,gif,png格式</text>
+							<text class="color">建议使用尺寸800x800像素以上,大小不超过1M的正方形图片;</text>
+						</view>
 					</view>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</view>
 			
 	    </view>		
@@ -242,7 +278,7 @@
 					<view class="title">商户介绍</view>
 					<view class="shopItemRespe">
 						<text>商户介绍</text>
-						<textarea value="" style="font-size:30upx;" class="shItRespeTextArea" placeholder="" v-model="customerDescribtion" />
+						<textarea maxlength="100000000"  style="font-size:30upx;" class="shItRespeTextArea"  v-model="customerDescribtion" />
 					</view>
 											
 				</view>	
@@ -259,10 +295,16 @@
 						
 						
 				<view   class="wrapAllShopArray" id="wrapAllShopArray" v-for="(item,index100) in marchantBranchStroe" :key="index100">	
+
+						
+						<!-- <view class="shopItemRespe">
+							<text>信息如下:</text>
+							<view style="float:right;width:80upx;height:40upx;background:#00BFFF;color:#fff;text-align:center;line-height:40upx;" :data-index100="index100" @click="delTheImg">删除</view>
+						</view> -->
 						
 						<view class="shopItemRespe">
-							<text>店铺名称</text>
-							<input class="InputShuRu" type="text"  v-model="item.storeName"/>
+							<text style="display:inline-block;vertical-align:middle;">店铺名称</text>
+							<input class="InputShuRu" style="display:inline-block;vertical-align:middle;width:60%;" type="text"  v-model="item.storeName"/>
 						</view>
 						
 						
@@ -270,9 +312,20 @@
 						<view class="shopItemRespe">
 							<text>分店地址</text>
 							<br>
-							<input class="InputShuRu" style="width:50%" type="text"  v-model="item.storeProvince"/>省
-							<input class="InputShuRu" style="width:50%" type="text"  v-model="item.storeCity"/>市
-							<input class="InputShuRu" style="width:50%" type="text"  v-model="item.stroeArea"/>区
+							<view style="display:flex;flex-direction:row;align-items:center;">
+								<view style="flex:1;white-space:nowrap;">
+								   <input class="InputShuRu" type="text"  v-model="item.storeProvince" style="display:inline-block;vertical-align:middle;"/>
+								   <text style="font-size:30upx;display:inline-block;vertical-align:middle;">省</text>
+								</view>
+								<view style="flex:1;white-space:nowrap;">
+									<input class="InputShuRu" type="text" v-model="item.storeCity" style="display:inline-block;vertical-align:middle;"/>
+								  <text style="font-size:30upx;display:inline-block;vertical-align:middle;">市</text>
+								</view>
+								<view style="flex:1;white-space:nowrap;">
+									<input class="InputShuRu" type="text"  v-model="item.stroeArea" style="display:inline-block;vertical-align:middle;"/>
+								  <text style="font-size:30upx;display:inline-block;vertical-align:middle;">区</text>
+								</view>
+							</view>
 							<!-- <picker class="ssqpicker"   :range="shopAddressP2" @change="shopAddressPChange2" range-key="proName">
 									<view>{{shopAddressP2[pIndex2].proName}}</view>
 							</picker>
@@ -286,17 +339,17 @@
 						
 						
 						<view class="shopItemRespe">
-							<text>分店详细地址</text>
-							<input class="InputShuRu" type="text" v-model="item.storeAddress" />
+							<text style="display:inline-block;vertical-align:middle;">分店详细地址</text>
+							<input class="InputShuRu" type="text" style="display:inline-block;vertical-align:middle;width:60%;" v-model="item.storeAddress" />
 						</view>
 						
 
 						<view class="shopItemRespe">
-							<text>客服电话</text>
-							<input class="InputShuRu" type="text" v-model="item.storeServicePhone"/>
+							<text style="display:inline-block;vertical-align:middle;">客服电话</text>
+							<input class="InputShuRu" type="text" v-model="item.storeServicePhone" style="display:inline-block;vertical-align:middle;width:60%;"/>
 						</view>
 
-					    <view style="border:1px dashed #00BFFF"></view>
+					    <view style="border:1px dashed #00BFFF;margin-top:40upx;"></view>
 					
 				</view>		
 					
@@ -327,19 +380,27 @@
 	export default{
 		data(){
 			return{
+				
+				isFrontArrIndex:0,
+				
 				upSrc:"",
 				defSrc:"../../static/capital/my_add_image@2x.png",
 				upSrc2:"",
 				defSrc2:"../../static/capital/my_add_image@2x.png",
 				consume:"",
 			    shopName:"",
+				
+				
+				proImgs:[],//店内环境照片
+				
+				
 				shopAddress:{},//原地址信息
 				shopObj:{},
 				shopObj2:{},
-				check1:true,
-				check2:true,
-				check3:true,
-				check4:true,
+				check1:false,
+				check2:false,
+				check3:false,
+				check4:false,
 				check5:false,
 				check6:false,
 				mychoose1:0,
@@ -348,7 +409,7 @@
 				mychoose4:0,
 				mychoose5:0,
 				mychoose6:0,
-				hasShopOrNot:"1",//是否有实体店铺
+				hasShopOrNot:1,//是否有实体店铺
 				shopAddressP:[{proName:""},{code:""}],//公司地址省
 				pIndex:0,
 				shopAddressC:[{proName:""},{code:""}],//公司地址市
@@ -417,6 +478,11 @@
 				storeCity:"",//分店市
 				stroeArea:"",//分店区
 				storeAddress:"",
+				
+				latitude:"",//店铺经度
+				longitude:"",//店铺纬度
+				
+				
 			}
 		},
 
@@ -469,17 +535,69 @@
 			uniIcon
 		},
 		methods:{
+			//定位
+			map(){
+				let that=this;
+				uni.chooseLocation({
+					success: function (res) {
+						// console.log('位置名称：' + res.name);
+						// console.log('详细地址：' + res.address);
+						// console.log('纬度：' + res.latitude);
+						// console.log('经度：' + res.longitude);
+						setTimeout(function() {
+							uni.showToast({
+								title:"定位成功",
+								icon:"none"
+							})
+						}, 200);
+						
+						that.latitude=res.latitude;//纬度
+						that.longitude=res.longitude;//经度
+						console.log("你好,定位的经度是"+that.latitude);
+						console.log("你好,定位的纬度是"+that.longitude);
+					}
+				})
+			},
+			
+			
+			
+			
+			
+			delTheImg:function(e)
+			{
+				console.log("你好,当前的index是"+e.currentTarget.dataset.index100);
+				console.log("你好,你点击了删除按钮");
+				that.marchantBranchStroe.splice(e.currentTarget.dataset.index100,1);
+			},
 			addBranchStore:function()
 			{
-				this.marchantBranchStroe.push({
-					"storeName":"",
-					"storeAddress":"",
-					"storeServicePhone":"",
-					"storeProvince":"",
-					"storeCity":"",
-					"stroeArea":""
-				})
-				     console.log("你点击了新增分店按钮!");   
+				if(that.marchantBranchStroe.length>4)
+				{
+					uni.showToast({
+						title:"最多5个",
+						content:"最多5个"
+					});
+					//yubaotangreturn;
+				}else{
+					that.marchantBranchStroe.unshift({
+						"storeName":"",
+						"storeAddress":"",
+						"storeServicePhone":"",
+						"storeProvince":"",
+						"storeCity":"",
+						"stroeArea":""
+					});
+					console.log("xinzengzhihoudayinkankan"+that.marchantBranchStroe.length);
+					console.log("xinzengzhihoudayinkankan"+that.marchantBranchStroe);
+					
+				}	
+				for(var i=0;i<that.marchantBranchStroe.length;i++)
+				{
+					console.log("mingzishi ----"+that.marchantBranchStroe[i].storeName);
+				}
+				
+				
+				     console.log("你点击了新增分店按钮!"+that.marchantBranchStroe.length);   
 				           //动态创建第1个view
 			// 			   var vw1=document.createElement("view");//动态创建第1个view
 			// 	  　　　　//设置 div 属性，如 id
@@ -579,6 +697,11 @@
 				     marchantId:that.shopObj.merchantId
 				  	},success(d){
 				         console.log("第一次请求展示数据信息数据接口成功!!!");
+						 
+						 console.log("你好,这是拿到分店的省区的code,省是"+d.storeProvince);
+						 console.log("你好,这是拿到分店的市区的code,市是"+d.storeCity);
+						 console.log("你好,这是拿到分店的辖区的code,辖是"+d.stroeArea);
+						 
 				  		 console.log(d);
 						 that.shopName=d.shopName||"";
 						 that.hasShopOrNot=d.entityShop;//有无实体店铺
@@ -591,10 +714,10 @@
 							 that.index=1;
 						 }
 						 that.shopAddress=d
-						 that.marchantBranchStroe=JSON.parse(d.marchantBranchStroe);
-
+						 that.marchantBranchStroe=JSON.parse(d.marchantBranchStroe)||[];
+                         console.log("nihao------------------------"+that.marchantBranchStroe.length);
 						// that.marchantBranchStroe =that.marchantBranchStroe;
-						console.log(that.marchantBranchStroe[0],"dfd");
+						//console.log(that.marchantBranchStroe[0],"dfd");
 						 console.log(typeof that.marchantBranchStroe);
 						 that.submitProvinceCode=d.province;
 						 that.submitCityCode=d.city;
@@ -624,9 +747,7 @@
 						 that.storeCityCode=d.storeCity;
 						 that.stroeAreaCode=d.stroeArea;
 						 //that.marchantBranchStroe=JSON.parse(d.marchantBranchStroe);
-						 console.log("你好,这是拿到分店的省区的code,省是"+d.storeProvince);
-						 console.log("你好,这是拿到分店的市区的code,市是"+d.storeCity);
-						 console.log("你好,这是拿到分店的辖区的code,辖是"+d.stroeArea);
+						 
 						 
 						 //空调是否开放
 						 if(that.isAirConditioner==1)
@@ -667,8 +788,12 @@
 						 }
 						 that.upSrc=d.storesPicture;
 						// that.shopPictures=that.upSrc;
-						 that.upSrc2=d.stopPrice;//店内环境照片
+						// that.upSrc2=d.stopPrice;//店内环境照片
+						 	 console.log("你好,页面初始化的时候得到的proImgs是"+d.stopPrice);
+						// that.proImgs=JSON.parse(d.stopPrice)||[];
+						//that.proImgs=JSON.parse(d.stopPrice)||[];
 						 //that.shopEnvironment=that.upSrc2;
+					      that.proImgs=d.stopPrice;
                          console.log("%%%%%%%%%%%得到的upSrc是"+that.upSrc);
 						 console.log("%%%%%%%%%%%得到的upSrc2是"+that.upSrc2);
 						 that.personConsume=d.perConserme||"";//人均消费
@@ -676,18 +801,21 @@
 						 that.time2=d.businessHoursEnd||"09:12";
 						 that.detailAddress=d.address||"";
 						 that.phoneNum=d.servicePhone||"";
+						 that.longitude=d.longitude||"";
+						 that.latitude=d.latitude||"";
 						 that.customWeiXin=d.serviceWeixin||"";
 						 that.customerDescribtion=d.introduce||"";
 						 that.fenShopName=d.storeName||"";
 						 that.fencustomerPhone=d.storeServicePhone||"";						
 						 that.searchP(d);
-						 that.searchP2(d)
+						 //that.searchP2(d)
 
 				  	}
 				  })
 			  },
 			  firstAddMed:function()
 			  {	  
+				  
 				  console.log(that.marchantBranchStroe,"dsfa");
 				  // areaCode: that.shopAddressX[that.xIndex].code,
 				  // cityCode: that.shopAddressC[that.cIndex].code,
@@ -716,7 +844,7 @@
 				console.log("分店提交之前的stroeAreaCode是"+that.shopAddressX2[that.xIndex2].code); 
 				console.log("%%%%%%%%%%%上传的upSrc是"+that.upSrc);
 				console.log("%%%%%%%%%%%上传的upSrc2是"+that.upSrc2);	
-		            console.log("你好,提交之前的marchantBranchStroe的length是"+that.marchantBranchStroe.length);
+		        console.log("你好,提交之前的marchantBranchStroe的length是"+that.marchantBranchStroe.length);
 					
 					for(var i=0;i<that.marchantBranchStroe.length;i++)
 					{
@@ -770,8 +898,6 @@
 						              }
 					}
 					
-					
-					
 				  if(that.shopName=="")
 				  {
 						  uni.showToast({
@@ -795,6 +921,17 @@
 					  })
 					  return;
 				  }
+				  if(that.latitude==""||that.longitude=="")
+				  {
+						 uni.showToast({
+							title:"请进行定位!",
+							content:"请进行定位!"
+						 })
+						 return;
+					  
+				  }
+				  
+				  
 				  if(that.personConsume=="")
 				  {
 						  uni.showToast({
@@ -845,7 +982,7 @@
 						  return;
 				  }
 			
-				  if(that.upSrc2=="")
+				  if(that.proImgs=="")
 				  {
 						  uni.showToast({
 							title:"请上传店内环境照片!",
@@ -896,22 +1033,29 @@
 						// return;
 				  // }
 				  
-				console.log("你好,这个方法被成功执行到第一行了--------------------");
-				console.log("第一个需要提交的参数是shopName,它的值是"+that.shopName);  
-				console.log("第二个需要提交的参数是hasShopOrNot,它的值是"+that.hasShopOrNot);  	
-				console.log("第三个需要提交的参数是submitProvince,它的值是"+that.submitProvince);
-				console.log("第四个需要提交的参数是submitCity,它的值是"+that.submitCity) 
-				console.log("第五个需要提交的参数是submitArea,它的值是"+that.submitArea) 
-				console.log("第六个需要提交的参数是detailAddress,它的值是"+that.detailAddress);
-				console.log("第七个需要提交的参数是personConsume,它的值是"+that.personConsume);
-				console.log("第8个需要提交的参数是time1,它的值是"+that.time1);
-				console.log("第9个需要提交的参数是time2,它的值是"+that.time2);
-				console.log("第10个需要提交的参数是phoneNum,它的值是"+that.phoneNum);
-				console.log("第11个需要提交的参数是customWeiXin,它的值是"+that.customWeiXin);
-				console.log("第12个需要提交的参数是shopEnvironment,它的值是"+that.shopEnvironment);
-				console.log("第13个需要提交的参数是shopPictures,它的值是"+that.shopPictures);	
+		// 		console.log("你好,这个方法被成功执行到第一行了--------------------");
+		// 		console.log("第一个需要提交的参数是shopName,它的值是"+that.shopName);  
+		// 		console.log("第二个需要提交的参数是hasShopOrNot,它的值是"+that.hasShopOrNot);  	
+		// 		console.log("第三个需要提交的参数是submitProvince,它的值是"+that.submitProvince);
+		// 		console.log("第四个需要提交的参数是submitCity,它的值是"+that.submitCity) 
+		// 		console.log("第五个需要提交的参数是submitArea,它的值是"+that.submitArea) 
+		// 		console.log("第六个需要提交的参数是detailAddress,它的值是"+that.detailAddress);
+		// 		console.log("第七个需要提交的参数是personConsume,它的值是"+that.personConsume);
+		// 		console.log("第8个需要提交的参数是time1,它的值是"+that.time1);
+		// 		console.log("第9个需要提交的参数是time2,它的值是"+that.time2);
+		// 		console.log("第10个需要提交的参数是phoneNum,它的值是"+that.phoneNum);
+		// 		console.log("第11个需要提交的参数是customWeiXin,它的值是"+that.customWeiXin);
+		// 		console.log("第12个需要提交的参数是shopEnvironment,它的值是"+that.shopEnvironment);
+		// 		console.log("第13个需要提交的参数是shopPictures,它的值是"+that.shopPictures);	
+		// 
+		//         console.log("第十四个需要提交的参数是marchantBranchStroe"+that.marchantBranchStroe);
 		
-		        console.log("第十四个需要提交的参数是marchantBranchStroe"+that.marchantBranchStroe);
+		
+		console.log("*****************你好,提交的店内环境照片是*******************"+JSON.stringify(that.proImgs));
+		
+		
+		
+		
 		
 				that.$ajax({
 					url:"/channelManagementRest/addOrUpdatemarchantIntroduce",
@@ -922,14 +1066,16 @@
 					province:that.shopAddressP[that.pIndex].code, //门店地址--省
 					city:that.shopAddressC[that.cIndex].code, //门店地址--市
 					area:that.shopAddressX[that.xIndex].code,//门店地址-区
+					latitude:that.latitude,//经度
+					longitude:that.longitude,//纬度
 					address:that.detailAddress, //门店详细地址
 					perConserme:that.personConsume,			 //人均消费
-					businessHoursStart:that.time1,//营业时间--营业开始时间
-					businessHoursEnd:that.time2,//营业时间--营业结束时间
+					businessHoursStart:that.time1||"2019-01-01 12:00:00",//营业时间--营业开始时间
+					businessHoursEnd:that.time2||"2019-05-06 15:06:12",//营业时间--营业结束时间
 					servicePhone:that.phoneNum,	//客服电话
 					serviceWeixin:that.customWeiXin,//客服微信
 					storesPicture:that.upSrc,	//门店照片
-					stopPrice:that.upSrc2,//店内环境照片
+					stopPrice:that.proImgs,//店内环境照片
 					isAirConditioner:that.isAirConditioner, //空调是否开放
 					isWifi:that.isWifi, //是否支持wifi
 					isMobileCharge:that.isMobileCharge,//是否支持手机充电
@@ -941,11 +1087,18 @@
 					// storeProvince:that.shopAddressP2[that.pIndex2].code,//分店省、
 					// storeCity:that.shopAddressC2[that.cIndex2].code,//分店市
 					// stroeArea:that.shopAddressX2[that.xIndex2].code,//分店区
-					marchantBranchStroe:(JSON.stringify(that.marchantBranchStroe)).toString(),
+					marchantBranchStroe:(JSON.stringify(that.marchantBranchStroe)),
 					storeAddress:that.storeAddress,//分店地址
 					storeServicePhone:that.fencustomerPhone,			 //分店客服电话
 				    marchantId:that.shopObj.merchantId
 					},success(d){
+						uni.showToast({
+							title:"操作成功!",
+							content:"操作成功!"
+						});
+						  uni.navigateTo({
+						  	url:"/pages/main/main"
+						  })
                          console.log("所有信息填写完整后发送后台接口请求成功了!");
 						 console.log(d);
 					}
@@ -1098,7 +1251,7 @@
 			},
 			 bindTimeChange2: function(e) {
 			    that.time2 = e.target.value
-				 console.log("获取的时间2是"+  that.time2 );
+				 console.log("获取的时间2是"+  that.time2);
 			},
 			limit(limit){
 				var size = "";
@@ -1148,6 +1301,75 @@
 					
 				});
 			},
+			
+			
+			
+			//商品图片选择
+			proImgsChoose3(type){
+				let that=this;
+				
+				// if(type==1&&that.proImgs.length>4){
+				// 	uni.showToast({
+				// 	    title:"商品图片最多上传五张",
+				// 		icon:"none"
+				// 	});
+				// 	return
+				// }
+				
+				uni.chooseImage({
+					count: 1, //默认9
+					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+					success: function (res) {
+						// if(that.limit(res.tempFiles[0].size)>3){
+						// 	uni.showToast({
+						// 		title:"图片太大",
+						// 		icon:"none"
+						// 	})
+						// 	return
+						// }
+			            that.$ajax({
+							uploadFile:true,
+							formData:{
+								'fileName':"/product/",
+							},
+							filePath:res.tempFilePaths[0],
+							success(d){
+								if(type==1){
+									//商品图片
+									that.proImgs.push(d);
+									
+									console.log("你好,当前的proImgs的长度是"+that.proImgs.length);
+									console.log(that.proImgs);
+								}else{
+									//商品详情图
+									that.proDetailsImg.push(d)
+								}
+							}
+						})
+						
+					
+					},
+				});
+			},
+			
+			
+			del(index,type){
+				let that=this;
+				console.log(index)
+				if(type==1){
+					//商品图片
+					 that.proImgs.splice(index, 1);
+					 console.log("你好,当前的proImgs的长度是"+that.proImgs.length);
+					 console.log(that.proImgs);
+				}else{
+					
+					//商品详情图
+					that.proDetailsImg.splice(index, 1);
+				}
+			},
+			
+		
+			
 			//店内环境图标选择
 			proImgsChoose2(){
 				// let that=this;
@@ -1156,13 +1378,13 @@
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: function (res) {
 						console.log(that.limit(res.tempFiles[0].size))
-						if(that.limit(res.tempFiles[0].size)>1){
-							uni.showToast({
-								title:"图片大小不能超过1M",
-								icon:"none"
-							})
-							return
-						}
+						// if(that.limit(res.tempFiles[0].size)>1){
+						// 	uni.showToast({
+						// 		title:"图片大小不能超过1M",
+						// 		icon:"none"
+						// 	})
+						// 	return
+						// }
 						that.$ajax({
 							uploadFile:true,
 							formData:{
@@ -1172,7 +1394,7 @@
 							success(d){
 								that.upSrc2=d
 							    //that.shopEnvironment=d;
-								console.log("你好,上传门店环境照片!!!!!!!!!!!!!!!!!");
+								console.log("你好,上传店内环境照片成功!!!!!!!!!!!!!!!!!");
 								console.log("店内环境照片地址是"+d);
 								console.log("店内环境照片地址是"+that.shopEnvironment);
 							}
@@ -1263,81 +1485,81 @@
             //关于分店的省市区的三级联动
             //省市区三级联动
             //城市的选择
-            shopAddressXChange2(e){
-            	that.xIndex2=e.detail.value
-            },
-            searchX2(init){
-            	that.$ajax({
-            		url:"/shopProduct/getCommonAddressDistrictList",
-            		data:{
-            			cityCode:that.shopAddressC2[that.cIndex2].code
-            		},success(d){
-            			that.shopAddressX2=d;
-            			if(init){
-            				console.log(10000)
-            				for(let i in d){
-            					if(d[i].code==that.marchantBranchStroe.stroeArea){
-            						that.xIndex2=i;
-            						break;
-            					}
-            				}
-            			}
-            		}
-            	})
-            },
-            shopAddressChange2(e){
-            	that.cIndex2=e.detail.value;
-            	that.searchX2();
-            },
-            searchC2(init){
-            
-            	that.$ajax({
-            		url:"/shopProduct/getCommonAddressCityList",
-            		data:{
-            			proCode:that.shopAddressP2[that.pIndex2].code
-            		},success(d){
-            			that.shopAddressC2=d;
-            			if(init){
-            				for(let i in d){
-            					if(d[i].code==that.marchantBranchStroe.storeCity){
-            						that.cIndex2=i;
-            						break;
-            					}
-            				}
-            				that.searchX2(init);
-            			}else{
-            				that.searchX2();
-            			}
-            			
-            		}
-            		
-            	})
-            },
-            shopAddressPChange2(e){
-            	that.pIndex2=e.detail.value;
-            	that.searchC2();
-            },
-            searchP2(init){
-            	that.$ajax({
-            		url:"/shopProduct/getCommonAddressProvinceList",
-            		success(d){
-            			that.shopAddressP2=d;
-            			if(init){
-            				console.log("dfsad");
-            				for(let i in d){
-            					if(d[i].code==that.marchantBranchStroe.storeProvince){
-            						that.pIndex2=i;
-            						break;
-            					}
-            				}
-            				console.log(that.pIndex2);
-            				that.searchC2(init)
-            			}else{
-            				that.searchC2()
-            			}
-            		}
-            	})
-            },
+            // shopAddressXChange2(e){
+            // 	that.xIndex2=e.detail.value
+            // },
+            // searchX2(init){
+            // 	that.$ajax({
+            // 		url:"/shopProduct/getCommonAddressDistrictList",
+            // 		data:{
+            // 			cityCode:that.shopAddressC2[that.cIndex2].code
+            // 		},success(d){
+            // 			that.shopAddressX2=d;
+            // 			if(init){
+            // 				console.log(10000)
+            // 				for(let i in d){
+            // 					if(d[i].code==that.marchantBranchStroe.stroeArea){
+            // 						that.xIndex2=i;
+            // 						break;
+            // 					}
+            // 				}
+            // 			}
+            // 		}
+            // 	})
+            // },
+            // shopAddressChange2(e){
+            // 	that.cIndex2=e.detail.value;
+            // 	that.searchX2();
+            // },
+            // searchC2(init){
+            // 
+            // 	that.$ajax({
+            // 		url:"/shopProduct/getCommonAddressCityList",
+            // 		data:{
+            // 			proCode:that.shopAddressP2[that.pIndex2].code
+            // 		},success(d){
+            // 			that.shopAddressC2=d;
+            // 			if(init){
+            // 				for(let i in d){
+            // 					if(d[i].code==that.marchantBranchStroe.storeCity){
+            // 						that.cIndex2=i;
+            // 						break;
+            // 					}
+            // 				}
+            // 				that.searchX2(init);
+            // 			}else{
+            // 				that.searchX2();
+            // 			}
+            // 			
+            // 		}
+            // 		
+            // 	})
+            // },
+            // shopAddressPChange2(e){
+            // 	that.pIndex2=e.detail.value;
+            // 	that.searchC2();
+            // },
+            // searchP2(init){
+            // 	that.$ajax({
+            // 		url:"/shopProduct/getCommonAddressProvinceList",
+            // 		success(d){
+            // 			that.shopAddressP2=d;
+            // 			if(init){
+            // 				console.log("dfsad");
+            // 				for(let i in d){
+            // 					if(d[i].code==that.marchantBranchStroe.storeProvince){
+            // 						that.pIndex2=i;
+            // 						break;
+            // 					}
+            // 				}
+            // 				console.log(that.pIndex2);
+            // 				that.searchC2(init)
+            // 			}else{
+            // 				that.searchC2()
+            // 			}
+            // 		}
+            // 	})
+            // },
             
             
 
@@ -1424,7 +1646,7 @@
 		display:inline-block;
 		margin-left:30upx;
 		border:1px solid rgba(0,0,0,0.18);
-		padding:12upx 8upx;
+		padding:4upx 12upx;
 	}
 	.InputShuRu{
 		text-indent:20upx;
@@ -1477,4 +1699,34 @@
 		height:280upx;
 		float:right;
 	}
+	
+	.imgs{
+		// width:100upx;
+		// height:200upx;
+		margin: 16upx 0;
+	}
+	input{
+		width:520upx;
+	}
+	.top input{
+		width:460upx;
+	}
+	.imgs view{
+		display: inline-block;
+		vertical-align: top;
+	}
+	.imgsText text{
+		display: block;
+		text-align: center;
+		width:166upx;
+		line-height: 43upx;
+		color:#fff;
+		font-size: 20upx;
+		background: #2D93FF;
+		margin-left: 24upx;
+	}
+	
+	
+	
+	
 </style>

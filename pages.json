@@ -33,7 +33,7 @@
 		{
             "path" : "pages/wx/wxReceipt",
             "style" : {
-				"navigationBarTitleText": "二维码收款"
+				"navigationBarTitleText": "微信收款"
 			}
         },
 		{
@@ -42,6 +42,45 @@
 				"navigationBarTitleText": "邀请"
 			}
 		},
+		
+		{
+		    "path": "pages/wx/mynewInvite1",
+		    "style": {
+		        // "navigationStyle": "custom"
+				"app-plus": {
+		            "bounce": "none", //关闭窗口回弹效果
+		            "titleNView": false
+		        }
+		    }
+		},
+		
+		{
+		    "path": "pages/wx/mynewInvite2",
+		    "style": {
+		        // "navigationStyle": "custom"
+				"app-plus": {
+		            "bounce": "none", //关闭窗口回弹效果
+		            "titleNView": false
+		        }
+		    }
+		},
+		
+		
+		{
+		    "path": "pages/wx/mynewInvite3",
+		    "style": {
+		        // "navigationStyle": "custom"
+				"app-plus": {
+		            "bounce": "none", //关闭窗口回弹效果
+		            "titleNView": false
+		        }
+		    }
+		},
+		
+		
+		
+		
+		
 		{
 		    "path" : "pages/wx/channel",
 		    "style" : {
@@ -71,6 +110,12 @@
 		    "path" : "pages/user/userAdmin",
 		    "style" : {
 				"navigationBarTitleText": "用户管理"
+			}
+		},
+		{
+		    "path" : "pages/user/commonProblem",
+		    "style" : {
+				"navigationBarTitleText": "常见问题"
 			}
 		},
 		{
@@ -126,6 +171,13 @@
 		    "path" : "pages/user/userList3",
 		    "style" : {
 				"navigationBarTitleText": "关联用户总数"
+			}
+		},
+		
+		{
+		    "path" : "pages/wx/testbox",
+		    "style" : {
+				"navigationBarTitleText": "测试box"
 			}
 		},
 		{
@@ -212,10 +264,11 @@
 				"navigationBarTitleText": "渠道收入明细"
 			}
 		},
+	
 		{
 		    "path" : "pages/capital/settlement",
 		    "style" : {
-				"navigationBarTitleText": "待结算明细"
+				"navigationBarTitleText":"交易明细"
 			}
 		},
 		{
@@ -226,9 +279,28 @@
 		},
 		
 		{
+			"path" : "pages/capital/shareMoneyTotal",
+			"style" : {
+				"navigationBarTitleText": "分享佣金发放总金额"
+			}
+		},
+		{
 			"path" : "pages/user/userList5",
 			"style" : {
-				"navigationBarTitleText": "下级渠道关联用户总数"
+				"navigationBarTitleText": "下级渠道关联注册用户总数"
+			}
+		},
+		
+		{
+			"path" : "pages/capital/amountOfRegistration",
+			"style" : {
+				"navigationBarTitleText": "注册奖励总金额"
+			}
+		},
+		{
+			"path" : "pages/capital/jiaoyitotal",
+			"style" : {
+				"navigationBarTitleText": "交易手续费补贴总金额"
 			}
 		},
 		

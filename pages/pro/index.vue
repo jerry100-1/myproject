@@ -33,18 +33,21 @@
 									</view>
 									<view class="right2" style="text-overflow:ellipsis;white-space:nowrap;">
 										<text style="position:relative;left:40upx;">上架日期</text>
-										<text style="position:relative;left:40upx;" class="color">{{item.createdTime}}</text>
+										<text style="position:relative;left:40upx;" class="color">{{item.createdTime.substr(0,10)}}</text>
 									</view>
 								</view>
 								
 								<view>
 									<view class="left left2">
-										<text>支付方式</text>
-										<text class="color">普通支付</text>
+										<text></text>
+									<!-- 	<text class="color">{{item.payMent==1?"联盟支付":"普通支付"}}</text> -->
+									<text class="color">{{item.payMent==1?"联盟支付":"普通支付"}}</text>
+									<text>{{item.productRatio}}%</text>
+									
 									</view>
 									<view class="right2">
-										<text style="position:relative;left:40upx;">分享雇金</text>
-										<text class="color" style="position:relative;left:40upx;">20%</text>
+										<text style="position:relative;left:40upx;">分享佣金</text>
+										<text class="color" style="position:relative;left:40upx;">{{item.commissionRatio}}%</text>
 									</view>
 								</view>
 								

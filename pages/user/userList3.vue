@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="top">
-			<image src="../../static/user/icon08.png"></image>
+			<image src="../../static/user/icon09.png"></image>
 			<view>
 				<view><text class="font_X">关联用户 {{topObj.lowerLevelDirectUserNum}} 人 </text></view>
 				<view class="subtitle">当月新增邀请 <text class="color">{{topObj.monthLowerLevelDirectUserNum}}</text> 人    30日新增邀请 <text class="color">{{topObj.thirtyDayLowerLevelDirectUserNum}}</text> 人</view>
@@ -16,9 +16,9 @@
 					<text>渠道商</text>
 				</view>
 				<view v-for="(item,index) in userList" :key="index">
-					<text>{{item.mobile||""}}</text>
+					<text>{{item.mobile||"暂未提供"}}</text>
 					<text>{{item.registerDate?item.registerDate.substr(0,10):""}}</text>
-					<text>{{item.inviterLevel?item.inviterMarchantName+"("+item.inviterLevel+")":""}}</text>
+					<text style="font-size:20upx;">{{item.inviterLevel?item.inviterMarchantName+"("+item.inviterLevel+")":"暂未提供"}}</text>
 				</view>
 			</view>
 			<uni-load-more :status="status"></uni-load-more>

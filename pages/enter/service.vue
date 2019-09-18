@@ -4,7 +4,7 @@
 		<view class="info">
 			<text class="title">湖南乐享一家智能科技有限公司</text>
 			<text>地址:湖南省长沙市雨花区至雅大厦401室</text>
-			<text>电话:0731-83185195</text>
+			<text>电话:0731-83185198</text>
 			<text>网址:http://www.hnlxyj.com</text>
 		</view>
 		<view class="banner">
@@ -30,7 +30,7 @@
 			<view>
 				<view>
 					<image src="http://www.hnlxyj.com/wx/image/my/3.jpg"></image>
-					<view>用户经理:颜女士</view>
+					<view>用户经理:黎先生</view>
 					<view>电话:13574113658</view>
 					<view class="btn" @tap="save(2)">保存图片</view>
 				</view>

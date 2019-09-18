@@ -3,7 +3,7 @@
 		<view class="top">
 			<image src="../../static/user/icon06.png"></image>
 			<view>
-				<view><text class="font_X">邀请用户 {{topObj.merchantDirectUserNum||0}} 人 </text>   剩余邀请名额 <text class="color">{{topObj.surplusMerchantDirectUserNum||0}}</text> 人</view>
+				<view><text class="font_X">邀请用户 {{topObj.merchantDirectUserNum||0}} 人 </text> </view>
 				<view class="subtitle">当月新增邀请 <text class="color">{{topObj.monthMerchantDirectUserNum||0}}</text> 人    30日新增邀请 <text class="color">{{topObj.thirtyDayMerchantDirectUserNum||0}}</text> 人</view>
 			</view>
 		</view>

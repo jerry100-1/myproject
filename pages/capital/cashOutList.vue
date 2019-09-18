@@ -13,7 +13,7 @@
 			<view class="list">
 				<view class="item_list" v-for="item in cashList" :key="item.distillId">
 					<view>{{item.takeOutTime}}</view>
-					<view>{{item.freeSource==1?'销售提现':'返佣提现'}}</view>
+					<view>{{item.freeSource|formateFreeSource()}}</view>
 					<view>￥{{item.distillMoney||0}}</view>
 					<view>{{item.distillState==4?'已完成':'待审核'}}</view>
 				</view>
@@ -39,6 +39,24 @@
 				cashList:[],
 				pageNo:1,
 				pageAll:2,
+			}
+		},
+		filters:{
+			formateFreeSource:function(item)
+			{
+				if(item.freeSource==1)
+				{
+					return "销售提现";
+				}else if(item.freeSource==2)
+				{
+					return "返佣提现";
+				}else if(item.freeSource==3)
+				{
+					return "注册奖励提现";
+				}else
+				{
+					return "交易补贴提现";
+				}
 			}
 		},
 		methods:{

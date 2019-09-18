@@ -1,5 +1,27 @@
 <template>
 	<view class="content">
+		
+		
+		<view class="top" style="display:flex;flex-direction:row;width:90%;margin-left:5%;margin-top:0upx;margin-bottom:60upx">
+			<view  style="flex:1;" @click="go1">
+			   微信收款
+			</view>
+			<view  style="flex:1" @click="go2" v-if="level==2||level==1">
+				
+				<text style="color:#007AFF;border-bottom:2px solid #007AFF;padding-bottom:10upx;">	
+				   渠道邀请
+				 </text>	
+			
+			</view>
+			<view  style="flex:1" @click="go3">用户邀请</view>
+		 </view>
+		
+		
+	
+		
+		
+		
+		
 		<canvas canvas-id="myCanvas" id="canvas"></canvas>
 		<view v-if="type==0" class="box">
 			<image src="../../static/invite/invite_1.png" mode="wwidthFix" class="code1"></image>
@@ -9,9 +31,9 @@
 			<image src="../../static/invite/invite_2.png" mode="wwidthFix" class="code2"></image>
 			<image :src="src" class="qrcode2 code"></image>
 		</view>
-		<view class="btns">
+		<view class="btns" style="margin-top:-40upx;">
 			<button @tap="save">保存图片</button>
-			<text @tap="service">联系客服</text>
+			<text @tap="service" style="position:relative;top:-80upx">联系客服</text>
 		</view>
 	</view>
 </template>
@@ -21,10 +43,43 @@
 		data(){
 			return{
 				type:2,
-				src:""
+				src:"",
+				level:""
 			}
 		},
 		methods:{
+			
+			go1:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/wxReceipt?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			go2:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/channel?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			go3:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/userInvitation?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			service(){
 				uni.navigateTo({
 					url:"/pages/enter/service"
@@ -92,7 +147,14 @@
 			 	key:"shopObj",
 			 	success(res){
 			 		let shopObj=JSON.parse(res.data);
-			 		that.src="https://wx.hnlxyj.com/user/share/qrCode?block=1&width=800&height=800&url=http://www.hnlxyj.com/wx/register/enter.html?marchantId="+shopObj.merchantId
+					
+					that.level=shopObj.level;
+					let url="http://www.hnlxyj.com/wx/#/pages/user/enter1"
+					url="https://wx.hnlxyj.com/user/share/qrCode?block=1&width=800&height=800&url="+encodeURIComponent(url)+"?marchantId="+shopObj.merchantId
+					
+					console.log(url);
+					console.log(decodeURIComponent(url));
+			 		that.src=url
 			 	}
 			})
 			this.type=e.type

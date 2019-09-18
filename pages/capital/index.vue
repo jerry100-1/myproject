@@ -1,68 +1,67 @@
 <template>
-	<view class="content">
+	
+	
+	<view class="content" style="overflow-x:hidden;">
 		<view class="" style="background:#fff;">
-			<view style="height:100upx;width:100%;line-height:100upx;margin-left:30upx;">可提现金额（元）</view>
-			<view style="display:flex;flex-direction:column;height:544upx;">
-				<view class="wrapTheView" style="height:100upx;width:100%;display:flex;border-top:1px solid rgba(0,0,0,0.16);flex-direction:row;align-items:center;line-height:100upx;">
-					 <view class="leftView" style="flex:4;height:100upx;">
+             <!-- {{dataInfo.withdrawableCash}} -->
+			<view class="titleOfEarning" style="">可提现金额（元）</view>
+			<view class="innerOfEarning" style="">
+				<view class="wrapTheView" style="">
+					 <view class="leftView" style="">
 						 <view style="margin-left:30upx;">销售收入<text style="color:red">￥{{dataInfo.salesRevenue||0}}</text></view>
 					 </view>
-					 <view class="rightView" style="flex:2;height:100upx;">
-						 <view style="width:160upx;height:60upx;background:red;color:#fff;font-size:30upx;line-height:60upx;border-radius:10upx;text-align:center;margin-top:20upx;"
+					 <view class="rightView" style="">
+						 <view class="rightViewInner" style=""
 						 @tap="change" data-type="1" :data-money="dataInfo.salesRevenue||0">立即提现</view>
 					 </view>
 				</view>
 				
 				
-				<view class="wrapTheView" style="height:100upx;width:100%;display:flex;border-top:1px solid rgba(0,0,0,0.16);flex-direction:row;align-items:center;line-height:100upx;">
-					 <view class="leftView" style="flex:4;height:100upx;">
+				<view class="wrapTheView" style="">
+					 <view class="leftView" style="">
 						 <view style="margin-left:30upx;">用户返佣<text style="color:red">￥{{dataInfo.taxableAmountOfDividends||0}}</text></view>
 					 </view>
-					 <view class="rightView" style="flex:2;height:100upx;">
-						 <view style="width:160upx;height:60upx;background:red;color:#fff;font-size:30upx;line-height:60upx;border-radius:10upx;text-align:center;margin-top:20upx;"
+					 <view class="rightView" style="">
+						 <view style="" class="rightViewInner"
 						 @tap="change" data-type="2" :data-money="dataInfo.taxableAmountOfDividends||0">立即提现</view>
 					 </view>
 				</view>
 				
-				
-				<view class="wrapTheView" style="height:100upx;width:100%;display:flex;border-top:1px solid rgba(0,0,0,0.16);flex-direction:row;align-items:center;line-height:100upx;">
-					 <view class="leftView" style="flex:4;height:100upx;">
-						 <view style="margin-left:30upx;">注册奖励<text style="color:red">￥{{dataInfo.taxableAmountOfDividends||0}}</text></view>
+
+				<view class="wrapTheView" style="">
+					 <view class="leftView" style="">
+						 <view style="margin-left:30upx;">注册奖励<text style="color:red">￥{{dataInfo.registerWithdrawal||0}}</text></view>
 					 </view>
-					 <view class="rightView" style="flex:2;height:100upx;">
-						 <view style="width:160upx;height:60upx;background:red;color:#fff;font-size:30upx;line-height:60upx;border-radius:10upx;text-align:center;margin-top:20upx;"
-						 @tap="change" data-type="3" :data-money="dataInfo.taxableAmountOfDividends||0">立即提现</view>
-					 </view>
-				</view>
-				
-				
-				
-				<view class="wrapTheView" style="height:100upx;width:100%;display:flex;border-top:1px solid rgba(0,0,0,0.16);flex-direction:row;align-items:center;line-height:100upx;">
-					 <view class="leftView" style="flex:4;height:100upx;">
-						 <view style="margin-left:30upx;">交易补贴<text style="color:red">￥{{dataInfo.taxableAmountOfDividends||0}}</text></view>
-					 </view>
-					 <view class="rightView" style="flex:2;height:100upx;">
-						 <view style="width:160upx;height:60upx;background:red;color:#fff;font-size:30upx;line-height:60upx;border-radius:10upx;text-align:center;margin-top:20upx;"
-						 @tap="change" data-type="4" :data-money="dataInfo.taxableAmountOfDividends||0">立即提现</view>
+					 <view class="rightView" style="">
+						 <view style="" class="rightViewInner"
+						 @tap="clickTap" data-type="3" :data-money="dataInfo.registerWithdrawal||0">立即提现</view>
 					 </view>
 				</view>
 				
 				
-				<view class="wrapTheView" style="height:140upx;width:100%;display:flex;border-top:1px solid rgba(0,0,0,0.16);flex-direction:column;align-items:center;justify-content:center;">
+				
+				<view class="wrapTheView" style="">
+					 <view class="leftView" style="flex:4;height:100upx;">
+						 <view style="margin-left:30upx;">交易补贴<text style="color:red">￥{{dataInfo.dealSubsidyWithdrawal||0}}</text></view>
+					 </view>
+					 <view class="rightView" style="flex:2;height:100upx;">
+						 <view style="" class="rightViewInner"
+						 @tap="clickTap" data-type="4" :data-money="dataInfo.dealSubsidyWithdrawal||0">立即提现</view>
+					 </view>
+				</view>
+				
+				
+				<view class="wrapTheView2" style="height:140upx;width:100%;display:flex;border-top:1px solid rgba(0,0,0,0.16);flex-direction:column;align-items:center;justify-content:center;">
 					   <view style="color:rgba(0,0,0,0.68);font-size:28upx;margin-bottom:10upx;">
 						   1.各模块可提现金额分别满100元方可分别提现.
 					   </view>
 					   <view style="color:rgba(0,0,0,0.68);font-size:28upx;margin-top:10upx;">
-						   2.体现申请审核通过,资金在T+0的工作日内到账
+						   2.提现申请审核通过,资金在T+0的工作日内到账
 					   </view>
 				</view>
 				
 				
-				
-				
-				
-				
-				
+			
 				
 				
 				
@@ -134,41 +133,34 @@
 					<uni-icon type="arrowright" size="20" color="#999" class="r"></uni-icon>
 				</view>
 			</view>
-			
-			
-			<view @tap="url" :data-url="'/pages/capital/userReturn?money='+dataInfo.allTaxableAmountOfDividends||0" >
+		
+			<view @tap="url100" :data-registerrewardtotalamount="dataInfo.registerRewardTotalAmount" :data-url="'/pages/capital/amountOfRegistration' " >
 				<text>注册奖励总金额（元）</text>
 				<view class="r">
-					<text>￥{{dataInfo.allTaxableAmountOfDividends||0}}</text>
+					<text>￥{{dataInfo.registerRewardTotalAmount||0}}</text>
 					<uni-icon type="arrowright" size="20" color="#999" class="r"></uni-icon>
 				</view>
 			</view>
 			
-			<view @tap="url" :data-url="'/pages/capital/userReturn?money='+dataInfo.allTaxableAmountOfDividends||0" >
+			<view @tap="url101" :data-dealsubsidytotalamount="dataInfo.dealSubsidyTotalAmount" :data-url="'/pages/capital/jiaoyitotal'">
 				<text>交易手续费补贴总金额（元）</text>
 				<view class="r">
-					<text>￥{{dataInfo.allTaxableAmountOfDividends||0}}</text>
+					<text>￥{{dataInfo.dealSubsidyTotalAmount||0}}</text>
 					<uni-icon type="arrowright" size="20" color="#999" class="r"></uni-icon>
 				</view>
 			</view>
 			
 			
 			
-			<view @tap="url" :data-url="'/pages/capital/userReturn?money='+dataInfo.allTaxableAmountOfDividends||0" >
+			<view @tap="url102" :data-sharecommissiontotalamount="dataInfo.shareCommissionTotalAmount" :data-url="'/pages/capital/shareMoneyTotal'" >
 				<text>分享佣金发放总金额（元）</text>
 				<view class="r">
-					<text>￥{{dataInfo.allTaxableAmountOfDividends||0}}</text>
+					<text>￥{{dataInfo.shareCommissionTotalAmount||0}}</text>
 					<uni-icon type="arrowright" size="20" color="#999" class="r"></uni-icon>
 				</view>
 			</view>
 			
-			
-		
-	
-			
-			
-			
-			
+
 			
 		</view>
 		<view class="footer" @tap="urlBank" data-url="/pages/capital/bank">
@@ -177,7 +169,12 @@
 		</view>
 		<uni-popup :show="isShow" position="middle" mode="fixed">
 			<view class="mode">
-				<view class="modeTitle">{{capitalType==1?'销售收入提现':"用户返佣提现"}} </view>
+				<view class="modeTitle">
+	<!-- 			{{capitalType==1?'销售收入提现':"用户返佣提现"}} -->
+			<!-- 	{{capitalType==1? "销售收入提现":capitalType==2?'用户返佣提现':capitalType==3?"注册奖励提现":"交易补贴提现"}} -->
+				 {{capitalType|formateText}}
+				 </view>
+	
 				<view class="money">
 					<text>提现金额</text>
 					<input type="number" v-model="money"/>
@@ -214,7 +211,64 @@
 				withdrawMoney:"",
 			}
 		},
+		filters:{
+			formateText:function(item)
+			{
+				//formateText 销售收入提现 用户返佣提现 注册奖励提现 交易补贴提现
+			  if(item.capitalType==1)
+			  {
+				  return "销售收入提现";
+			  }else if(item.capitalType==2)
+			  {
+				  return "用户返佣提现";
+			  }else if(item.capitalType==3)
+			  {
+				  return "注册奖励提现";
+			  }else{
+				  return "交易补贴提现";
+			  } 
+			
+			}
+		},
 		methods: {
+			
+			url100:function(e)
+			{
+				console.log("你好,获取的参数url是"+e.currentTarget.dataset.url);
+				console.log("你好,获取的参数registerrewardtotalamount是"+e.currentTarget.dataset.registerrewardtotalamount);
+				 uni.navigateTo({
+				   url:e.currentTarget.dataset.url+"?registerrewardtotalamount="+e.currentTarget.dataset.registerrewardtotalamount
+				 });
+			},
+	
+			url101:function(e)
+			{
+				console.log("你好,获取的参数url是"+e.currentTarget.dataset.dealsubsidytotalamount);
+				console.log("你好,获取的参数url是"+e.currentTarget.dataset.url);
+				uni.navigateTo({
+					url:e.currentTarget.dataset.url+"?dealsubsidytotalamount="+e.currentTarget.dataset.dealsubsidytotalamount
+				})
+			},
+			url102:function(e)
+			{
+			    console.log("你好,获取的参数sharecommissiontotalamount是"+e.currentTarget.dataset.sharecommissiontotalamount);
+				console.log("你好,获取的参数url是"+e.currentTarget.dataset.url);
+				uni.navigateTo({
+					url:e.currentTarget.dataset.url+"?sharecommissiontotalamount="+e.currentTarget.dataset.sharecommissiontotalamount
+				})
+			},
+			
+			clickTap:function()
+			{
+				// uni.showToast({
+				// 	title:"请到管理后台提现",
+				// 	content:"请到管理后台提现"
+				// });
+				uni.showModal({
+					title:"请到管理后台提现",
+					content:"请到管理后台提现"
+				})
+			},
 			change(e){
 				
 				
@@ -225,6 +279,13 @@
 							title:"可提现金额须大于或等于100",
 							icon:"none"
 						})
+						
+						// uni.showToast({
+						// 	title:"请到管理后台完成提现",
+						// 	icon:"none"
+						// });
+						
+						
 						return
 					}
 				}
@@ -237,6 +298,10 @@
 				let that=this;
 				if(that.money&&that.pwd){
 					if(that.money<100){
+						 // uni.showToast({
+						 // 	title:"请到管理后台完成提现",
+						 // 	icon:"none"
+						 // });
 						uni.showToast({
 							title:"提现金额须大于或等于100",
 							icon:"none"
@@ -255,8 +320,16 @@
 							let m=that.money*1+that.dataInfo.hasBeenPresented*1;
 							if(that.capitalType==1){
 								that.dataInfo.salesRevenue=num.toFixed(2);
-							}else{
+							}else if(that.capitalType==2){
+								//以下语句新增----------------------------
 								that.dataInfo.taxableAmountOfDividends=num.toFixed(2);
+							}else if(that.capitalType==3)
+							{
+								that.dataInfo.registerRewardTotalAmount=num.toFixed(2);
+								//registerRewardTotalAmount  dealSubsidyTotalAmount
+								//registerWithdrawal  dealSubsidyWithdrawal
+							}else{
+								that.dataInfo.registerRewardTotalAmount=num.toFixed(2);
 							}
 							that.dataInfo.hasBeenPresented=m.toFixed(2);
 							that.isShow=!that.isShow;
@@ -279,8 +352,9 @@
 				})
 			},
 			urlBank(e){
+				let that=this;
 				uni.navigateTo({
-					url:e.currentTarget.dataset.url+"?type="+this.dataInfo.isBindingBankCard
+					url:e.currentTarget.dataset.url+"?type="+that.dataInfo.isBindingBankCard
 				})
 			}
 		},
@@ -302,6 +376,9 @@
 					marchantId:that.shopObj.merchantId
 				},
 				success(d){
+					
+					console.log("这是资金版块的首页返回的所有的数据"+d);
+					
 					that.dataInfo=d
 				}
 			})
@@ -310,6 +387,26 @@
 </script>
 
 <style scoped>
+	.titleOfEarning{
+		height:100upx;width:100%;line-height:100upx;margin-left:30upx;
+	}
+	.innerOfEarning{
+		display:flex;flex-direction:column;height:544upx;
+	}
+	.wrapTheView{
+		height:100upx;width:100%;display:flex;border-top:1px solid rgba(0,0,0,0.16);flex-direction:row;align-items:center;line-height:100upx;
+	}
+	.leftView{
+		flex:4;height:100upx;
+	}
+	.rightView{
+		flex:2;height:100upx;
+	}
+	.rightViewInner{
+		width:160upx;height:60upx;background:red;color:#fff;font-size:30upx;line-height:60upx;border-radius:10upx;text-align:center;margin-top:20upx;
+	}
+	
+	
 	.content{
 		background: #f2f2f2;
 		padding: 0;
@@ -414,7 +511,7 @@
 	}
 	.mode{
 		width:617upx;
-		height:500upx;
+		height:600upx;
 		border-radius: 30upx;
 		background: #fff;
 	}

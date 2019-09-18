@@ -29,6 +29,7 @@
 </template>
 
 <script>
+	var that=this;
 	export default{
 		data(){
 			return{
@@ -40,12 +41,14 @@
 			}
 		},
 		onLoad(e){
-			this.img=e.img;
-			this.expressName=e.expressName;
-			this.expressNo=e.expressNo;
+			that=this;
+			that.img=e.img;
+			that.expressName=e.expressName;
+			that.expressNo=e.expressNo;
+			
 		},
 		onShow(){
-			let that=this;
+			//let that=this;
 			that.$ajax({
 				url:"/order/showDelivery",
 				data:{

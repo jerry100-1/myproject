@@ -61,7 +61,7 @@
 					<image src="../../static/reight.png" mode="scaleToFill" class="r"></image>
 				</view>
 				<view class="item_list" @click="url" data-url="/pages/user/userList2">
-					<image src="../../static/user/icon04.png" mode="widthFix"></image>
+					<image src="../../static/user/icon07.png" mode="widthFix"></image>
 					<view>
 						<text>直推用户邀请用户 <text class="color"> {{obj.userDirectUserNum||0}}</text> 人</text>
 						<text>当月新增邀请 <text class="color"> {{obj.monthUserDirectUserNum||0}}</text> 人</text>
@@ -69,19 +69,10 @@
 					<image src="../../static/reight.png" mode="scaleToFill" class="r"></image>
 				</view>
 				
-				
-				<view class="item_list" @click="url" data-url="/pages/user/userList3" v-if="shopObj.level!=3">
+				<!-- 商家直属注册用户总数 -->
+				<view class="item_list" @click="url109" data-url="/pages/user/userList4" :data-data100="obj.merchantDirectUserRegisterNum"
+				  :data-data101="obj.sevenDayMerchantDirectUserRegisterNum">
 					<image src="../../static/user/icon08.png" mode="widthFix"></image>
-					<view>
-						<text>下级渠道关联用户总数 <text class="color"> {{obj.lowerLevelDirectUserNum||0}}</text> 人</text>
-						<text>当月新增邀请 <text class="color"> {{obj.monthLowerLevelDirectUserNum||0}}</text> 人</text>
-					</view>
-					<image src="../../static/reight.png" mode="scaleToFill" class="r"></image>
-				</view>
-				
-				<!-- 商家指数注册用户总数 -->
-				<view class="item_list" @click="url" data-url="/pages/user/userList4">
-					<image src="../../static/user/icon05.png" mode="widthFix"></image>
 					<view>
 						<text>商家直属注册用户 <text class="color"> {{obj.merchantDirectUserRegisterNum||0}}</text> 人</text>
 						<text>7日新增邀请<text class="color"> {{obj.sevenDayMerchantDirectUserRegisterNum||0}}</text> 人</text>
@@ -89,14 +80,27 @@
 					<image src="../../static/reight.png" mode="scaleToFill" class="r"></image>
 				</view>
 				
+				
+				<!-- 下级渠道关联用户总数 -->
+				<view class="item_list" @click="url" data-url="/pages/user/userList3" v-if="shopObj.level!=3">
+					<image src="../../static/user/icon09.png" mode="widthFix"></image>
+					<view>
+						<text>下级渠道关联用户总数 <text class="color"> {{obj.lowerLevelDirectUserNum||0}}</text> 人</text>
+						<text>当月新增邀请 <text class="color"> {{obj.monthLowerLevelDirectUserNum||0}}</text> 人</text>
+					</view>
+					<image src="../../static/reight.png" mode="scaleToFill" class="r"></image>
+				</view>
+				
+				
 				<!-- 下级渠道关联注册用户总数 -->
-				<view class="item_list" @click="url" data-url="/pages/user/userList5">
-					<image src="../../static/user/icon07.png" mode="widthFix"></image>
+				<view class="item_list" @click="url2" data-url2="/pages/user/userList5"  v-if="shopObj.level!=3"   :data-data1="obj.lowerLevelDirectUserRegisterNum"
+				   :data-data2="obj.sevenDayLowerLevelDirectUserRegisterNum">
+					<image src="../../static/user/icon02.png" mode="widthFix"></image>
 					<view>
 						<text>下级渠道关联注册用户总数 <text class="color"> {{obj.lowerLevelDirectUserRegisterNum||0}}</text> 人</text>
 						<text>7日新增邀请<text class="color"> {{obj.sevenDayLowerLevelDirectUserRegisterNum||0}}</text> 人</text>
 					</view>
-					<image src="../../static/user/icon02.png" mode="scaleToFill" class="r"></image>
+					<image src="../../static/reight.png" mode="scaleToFill" class="r"></image>
 				</view>
 				
 				
@@ -130,7 +134,7 @@
 							<text class="assessContent">用户评价:{{item.descContent||""}}</text>
 						</view>
 						<view class="img">
-							<image :src="i" v-for="(i,index) in item.images" :key="index"></image>
+							<image :src="i" v-for="(i,index) in item.images" v-if="item.images!='' " :key="index"></image>
 							<button type="primary" @click="isReplyOk(item.evalId)" v-if="item.replyStatus==1">回复</button>
 						</view>
 						<view class="foot" v-if="item.replyStatus==2">
@@ -184,9 +188,29 @@
 			}
 		},
 		methods: {
+			url109:function(e)
+			{
+				console.log("你好,获取的商家直属注册用户数据1是"+e.currentTarget.dataset.data100);
+				console.log("你好,获取的商家直属注册用户数据2是"+e.currentTarget.dataset.data101);
+				
+				uni.navigateTo({
+					url:"/pages/user/userList4?data100="+e.currentTarget.dataset.data100+"&data101="+e.currentTarget.dataset.data101
+				})
+				
+			},
 			url(e){
+				console.log("你好,我获取的下级渠道关联注册用户总数是"+e.currentTarget.dataset.data1);
+				console.log("你好,我获取的7日内新增下级渠道注册关联用户总数是"+e.currentTarget.dataset.data2);
 				uni.navigateTo({
 					url:e.currentTarget.dataset.url
+				})
+			},
+			url2(e){
+				let url2=e.currentTarget.dataset.url2;
+				console.log("你好,我获取的下级渠道关联注册用户总数是"+e.currentTarget.dataset.data1);
+				console.log("你好,我获取的7日内新增下级渠道注册关联用户总数是"+e.currentTarget.dataset.data2);
+				uni.navigateTo({
+					url:"/pages/user/userList5?data1="+e.currentTarget.dataset.data1+"&data2="+e.currentTarget.dataset.data2
 				})
 			},
 			//头部内容切换
@@ -287,6 +311,8 @@
 				key:"shopObj",
 				success(res){
 					that.shopObj=JSON.parse(res.data);
+					//level c-1 b-2 a-3
+					console.log("当前的用户级别是"+that.shopObj.level);
 				}
 			})
 			this.$ajax({
@@ -296,7 +322,10 @@
 					merchantId:that.shopObj.merchantId
 				},
 				success(d){
+					
 					that.obj=d
+					console.log("你好,这是用户管理首页的所有数据"+d);
+					
 				}
 			})
 		},

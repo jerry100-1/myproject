@@ -37,7 +37,7 @@
 			<text>当前版本</text>
 			
 			<image src="../../static/reight.png" class="r"></image>
-			<text class="r">1.0.0</text>
+			<text class="r">1.2.4</text>
 		</view>
 		<view class="btn">
 			<button @tap="exit">退出帐号</button>

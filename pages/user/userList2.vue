@@ -16,9 +16,9 @@
 					<text>邀请号码</text>
 				</view>
 				<view v-for="(item,index) in userList" :key="index">
-					<text>{{item.showInviterMobile||""}}</text>
+					<text>{{item.showInviterMobile||"暂未提供"}}</text>
 					<text>{{item.registerDate.substr(0,10)}}</text>
-					<text>{{item.showMobile||""}}</text>
+					<text>{{item.showMobile||"暂未提供"}}</text>
 				</view>
 			</view>
 			<uni-load-more :status="status"></uni-load-more>

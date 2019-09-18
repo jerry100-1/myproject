@@ -1,32 +1,31 @@
 
-.content.data-v-5151ce8e{
+.content.data-v-80527804{
 	background: #f2f2f2;
 	padding: 0;
 }
-.input-row.data-v-5151ce8e{
+.input-row.data-v-80527804{
 	background: #fff;
 	padding: 0 30rpx;
 	border-bottom: 1px solid #eee;
 }
-button.data-v-5151ce8e{
+button.data-v-80527804{
 	width:574rpx;
 	height:76rpx;
 	line-height: 76rpx;
 	text-align: center;
 	background: #2D93FF;
-	-webkit-border-radius: 50rpx;
-	        border-radius: 50rpx;
+	border-radius: 50rpx;
 	margin: 120rpx auto;
 }
-.border input.data-v-5151ce8e{
+.border input.data-v-80527804{
 	width:400rpx;
 }
-input.data-v-5151ce8e{
+input.data-v-80527804{
 	width:320rpx;
 	padding: 20rpx 0;
 	vertical-align: middle;
 }
-.getCode.data-v-5151ce8e{
+.getCode.data-v-80527804{
 	line-height: 80rpx;
 	border-left: 1px solid #eee;
 	height: 80rpx;
@@ -35,7 +34,7 @@ input.data-v-5151ce8e{
 	width:172rpx;
 	text-align: center;
 }
-.phone.data-v-5151ce8e{
+.phone.data-v-80527804{
 	padding-top: 20rpx;
 	line-height: 30px;
 }

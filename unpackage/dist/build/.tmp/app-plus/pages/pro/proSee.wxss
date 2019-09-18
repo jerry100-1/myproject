@@ -1,53 +1,53 @@
-.content.data-v-383f98fe {
+.content.data-v-6da14ec6 {
   background: #f2f2f2;
   padding: 0;
 }
-.a.data-v-383f98fe {
+.a.data-v-6da14ec6 {
   padding-bottom: 120rpx;
 }
-.uni-rate.data-v-383f98fe {
+.uni-rate.data-v-6da14ec6 {
   display: inline-block;
   vertical-align: middle;
   margin-left: 10rpx;
 }
-.swiper.data-v-383f98fe {
+.swiper.data-v-6da14ec6 {
   height: 750rpx !important;
 }
-.swiper-item image.data-v-383f98fe {
+.swiper-item image.data-v-6da14ec6 {
   width: 100%;
 }
-.agoramoney.data-v-383f98fe {
+.agoramoney.data-v-6da14ec6 {
   font-size: 24rpx;
   color: #999;
   text-decoration: line-through;
 }
-.proInfo.data-v-383f98fe {
+.proInfo.data-v-6da14ec6 {
   background: #fff;
   padding: 30rpx;
   font-size: 32rpx;
   color: #333;
   margin-bottom: 20rpx;
 }
-.proInfo .foot.data-v-383f98fe {
+.proInfo .foot.data-v-6da14ec6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
-.proInfo .foot view.data-v-383f98fe {
+.proInfo .foot view.data-v-6da14ec6 {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
   font-size: 24rpx;
 }
-.proInfo image.data-v-383f98fe {
+.proInfo image.data-v-6da14ec6 {
   width: 48rpx;
   height: 48rpx;
   vertical-align: middle;
   margin-right: 10rpx;
 }
-.proInfo .h5.data-v-383f98fe {
+.proInfo .h5.data-v-6da14ec6 {
   margin-top: 20rpx;
   width: 580rpx;
   font-weight: 600;
@@ -60,13 +60,13 @@
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
 }
-.proInfo .title.data-v-383f98fe {
+.proInfo .title.data-v-6da14ec6 {
   position: relative;
 }
-.color.data-v-383f98fe {
+.color.data-v-6da14ec6 {
   color: #EE3535;
 }
-.share.data-v-383f98fe {
+.share.data-v-6da14ec6 {
   width: 110rpx;
   height: 48rpx;
   line-height: 48rpx;
@@ -80,12 +80,12 @@
   top: 0;
   right: -30rpx;
 }
-.share image.data-v-383f98fe {
+.share image.data-v-6da14ec6 {
   width: 40rpx;
   height: 40rpx;
   vertical-align: middle;
 }
-.list.data-v-383f98fe {
+.list.data-v-6da14ec6 {
   line-height: 88rpx;
   margin-bottom: 20rpx;
   padding: 0 30rpx;
@@ -93,15 +93,15 @@
   font-size: 28rpx;
   color: #999;
 }
-.assess.data-v-383f98fe {
+.assess.data-v-6da14ec6 {
   font-size: 32rpx;
   color: #333;
   background: #fff;
 }
-.assess > view.data-v-383f98fe {
+.assess > view.data-v-6da14ec6 {
   padding: 0 30rpx;
 }
-.assess image.data-v-383f98fe {
+.assess image.data-v-6da14ec6 {
   width: 42rpx;
   height: 42rpx;
   border: 1px solid #eee;
@@ -109,31 +109,31 @@
   border-radius: 50%;
   vertical-align: middle;
 }
-.assess .box.data-v-383f98fe {
+.assess .box.data-v-6da14ec6 {
   margin-top: 10rpx;
   padding-bottom: 30rpx;
   font-size: 28rpx;
 }
-.assess .userName.data-v-383f98fe {
+.assess .userName.data-v-6da14ec6 {
   color: #999;
   font-size: 28rpx;
 }
-.detailInfo.data-v-383f98fe {
+.detailInfo.data-v-6da14ec6 {
   margin-top: 20rpx;
 }
-.detailInfo .list.data-v-383f98fe {
+.detailInfo .list.data-v-6da14ec6 {
   text-align: center;
   color: #333;
   padding: 0;
 }
-.detailInfo .box.data-v-383f98fe {
+.detailInfo .box.data-v-6da14ec6 {
   width: 690rpx;
   padding: 0 30rpx;
 }
-.detailInfo image.data-v-383f98fe {
+.detailInfo image.data-v-6da14ec6 {
   float: left;
 }
-.footer.data-v-383f98fe {
+.footer.data-v-6da14ec6 {
   background: #fff;
   height: 100rpx;
   position: fixed;
@@ -142,17 +142,17 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.footer view.data-v-383f98fe {
+.footer view.data-v-6da14ec6 {
   display: inline-block;
   vertical-align: text-top;
 }
-.footer image.data-v-383f98fe {
+.footer image.data-v-6da14ec6 {
   width: 40rpx;
   display: block;
   height: 40rpx;
   margin: 0 auto;
 }
-.footer .icon.data-v-383f98fe {
+.footer .icon.data-v-6da14ec6 {
   text-align: center;
   width: 310rpx;
   background: #fff;
@@ -161,13 +161,13 @@
   height: 100rpx;
   padding: 20rpx;
 }
-.footer .icon > view.data-v-383f98fe {
+.footer .icon > view.data-v-6da14ec6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
-.footer .icon > view view.data-v-383f98fe {
+.footer .icon > view view.data-v-6da14ec6 {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -176,7 +176,7 @@
   font-size: 22rpx;
   margin-right: 20rpx;
 }
-.footer .add.data-v-383f98fe {
+.footer .add.data-v-6da14ec6 {
   line-height: 100rpx;
   width: 220rpx;
   color: #fff;
@@ -184,7 +184,7 @@
   background: #f90;
   text-align: center;
 }
-.footer .down.data-v-383f98fe {
+.footer .down.data-v-6da14ec6 {
   width: 220rpx;
   background: #EE3535;
   color: #fff;
@@ -192,7 +192,7 @@
   text-align: center;
   font-size: 28rpx;
 }
-.box image.data-v-383f98fe {
+.box image.data-v-6da14ec6 {
   float: left;
 }
 

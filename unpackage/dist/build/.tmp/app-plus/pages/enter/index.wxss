@@ -1,24 +1,24 @@
 
-.content.data-v-37628082{
+.content.data-v-3c0ab5b5{
 	padding: 0;
 	background: #f2f2f2;
 }
-.banner image.data-v-37628082{
+.banner image.data-v-3c0ab5b5{
 	width:100%;
 }
-.shopInfo view .isFront.data-v-37628082{
+.shopInfo view .isFront.data-v-3c0ab5b5{
 	height:46rpx;
 }
-.marginTop.data-v-37628082{
+.marginTop.data-v-3c0ab5b5{
 	margin-top: -52rpx;
 }
-.nav.data-v-37628082{
+.nav.data-v-3c0ab5b5{
 	background: #fff;
 	margin: 20rpx 0;
 	padding-left: 30rpx;
 	line-height: 90rpx;
 }
-.modifyBtn.data-v-37628082{
+.modifyBtn.data-v-3c0ab5b5{
 	padding:5rpx 15rpx;
 	background:#2D93FF;
 	border-radius:5rpx;
@@ -28,16 +28,16 @@
 	color:#fff;
 	font-size:26rpx;
 }
-.nav>view.data-v-37628082{
+.nav>view.data-v-3c0ab5b5{
 	font-size: 30rpx;
 	margin-right: 30rpx;
 	display: inline-block;
 }
-.fixWidth.data-v-37628082{
+.fixWidth.data-v-3c0ab5b5{
 	width:180rpx;
 	display: inline-block;
 }
-.subcomit.data-v-37628082{
+.subcomit.data-v-3c0ab5b5{
 	display: inline-block;
 	width:114rpx;
 	line-height: 48rpx;
@@ -49,28 +49,28 @@
 	margin-left: 10rpx;
 	border-radius: 20rpx;
 }
-.nav view.data-v-37628082{
+.nav view.data-v-3c0ab5b5{
 	border-bottom: 6rpx solid transparent;
 }
-.nav view.active.data-v-37628082{
+.nav view.active.data-v-3c0ab5b5{
 	color:#2D93FF;
 	border-bottom-color: #2D93FF;
 }
-.search.data-v-37628082{
+.search.data-v-3c0ab5b5{
 	padding: 0 15rpx;
 }
-.search>view.data-v-37628082{
+.search>view.data-v-3c0ab5b5{
 	display: inline-block;
 	vertical-align: top;
 }
-.search picker.data-v-37628082{
+.search picker.data-v-3c0ab5b5{
 	background: #fff;
 	border:1px solid #eee;
 	width:160rpx;
 	height: 60rpx;
 	margin-right: 20rpx;
 }
-.search input.data-v-37628082{
+.search input.data-v-3c0ab5b5{
 	width:380rpx;
 	height:60rpx;
 	line-height: 60rpx;
@@ -80,10 +80,10 @@
 	font-size: 24rpx;
 	border:1px solid #eee;
 }
-.color.data-v-37628082{
+.color.data-v-3c0ab5b5{
 	color:#EE3535;
 }
-.search text.data-v-37628082{
+.search text.data-v-3c0ab5b5{
 	display: inline-block;
 	width: 100rpx;
 	height: 60rpx;
@@ -93,7 +93,7 @@
 	color:#fff;
 	font-size: 24rpx;
 }
-.item_list.data-v-37628082{
+.item_list.data-v-3c0ab5b5{
 	background: #fff;
 	margin-top: 25rpx;
 	padding-top: 24rpx;
@@ -101,40 +101,40 @@
 	color:#333;
 	font-size: 24rpx;
 }
-.item_list>view.data-v-37628082{
+.item_list>view.data-v-3c0ab5b5{
 	padding: 0 26rpx 0 42rpx;
 }
-.shopInfo.data-v-37628082{
+.shopInfo.data-v-3c0ab5b5{
 	margin-top: 20rpx;
 	border-bottom:1px solid #eee;
 }
-.shopInfo>view.data-v-37628082{
+.shopInfo>view.data-v-3c0ab5b5{
 	vertical-align: top;
 	display: inline-block;
 }
-.level.data-v-37628082{
+.level.data-v-3c0ab5b5{
 	text-align: center;
 	line-height: 60rpx;
 }
-.level view.data-v-37628082{
+.level view.data-v-3c0ab5b5{
 	display: inline-block;
 }
-.shopInfo .logoImg.data-v-37628082{
+.shopInfo .logoImg.data-v-3c0ab5b5{
 	width:160rpx;
 	height:160rpx;
 	margin-right: 22rpx;
 }
-.shopInfo image.data-v-37628082{
+.shopInfo image.data-v-3c0ab5b5{
 	width: 160rpx;
 	height:160rpx;
 }
-.shopInfo>view>view.data-v-37628082{
+.shopInfo>view>view.data-v-3c0ab5b5{
 	margin-bottom: 6rpx;
 }
-.shopInfo>view>view text.data-v-37628082{
+.shopInfo>view>view text.data-v-3c0ab5b5{
 	margin-right: 10rpx;
 }
-.edit.data-v-37628082{
+.edit.data-v-3c0ab5b5{
 	display: inline-block;
 	width:78rpx;
 	height:48rpx;
@@ -145,32 +145,32 @@
 	border-radius: 50rpx;
 	margin-bottom: 20rpx;
 }
-.item.data-v-37628082{
+.item.data-v-3c0ab5b5{
 	line-height: 88rpx;
 	border-bottom: 1px solid #eee;
 }
-.item .marginLeft.data-v-37628082{
+.item .marginLeft.data-v-3c0ab5b5{
 	margin-right: 10rpx;
 	margin-left: 20rpx;
 }
-.search .level.data-v-37628082{
+.search .level.data-v-3c0ab5b5{
 	width:100%;
 	font-size: 24rpx;
 }
-.buler.data-v-37628082{
+.buler.data-v-3c0ab5b5{
 	color:#007AFF;
 	margin-right: 20rpx;
 }
-.gear.data-v-37628082{
+.gear.data-v-3c0ab5b5{
 	color:#999;
 }
-.mode.data-v-37628082{
+.mode.data-v-3c0ab5b5{
 	width:614rpx;
 	
 	border-radius: 20rpx;
 	background: #fff;
 }
-.mode .title.data-v-37628082{
+.mode .title.data-v-3c0ab5b5{
 	font-size: 30rpx;
 	color:#333;
 	width: 100%;
@@ -179,11 +179,11 @@
 	margin-bottom: 44rpx;
 	font-weight: 600;
 }
-.mode .box.data-v-37628082{
+.mode .box.data-v-3c0ab5b5{
 	padding: 0 30rpx;
 	line-height: 1.5;
 }
-.mode .foot.data-v-37628082{
+.mode .foot.data-v-3c0ab5b5{
 	margin-top: 60rpx;
 	line-height: 94rpx;
 	background: #f4f4f4;

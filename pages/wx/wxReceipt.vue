@@ -1,11 +1,26 @@
 <template>
-	<view class="content">
-		<canvas canvas-id="myCanvas" id="canvas"></canvas>
-		<view>
-			<image :src="src" alt=""></image>
-			<button @tap="save">保存图片</button>
-		</view>
+	<view style="width:100%;">
+		<view class="top" style="display:flex;flex-direction:row;width:90%;margin-left:5%;margin-top:40upx;margin-bottom:60upx;margin-left:90upx;">
+			<view  style="flex:1;" @click="go1">
+			   <text style="color:#007AFF;border-bottom:2px solid #007AFF;padding-bottom:10upx;">微信收款</text>	
+			</view>
+			<!-- 1c2b3a -->
+			<view  style="flex:1" @click="go2" v-if="level==2||level==1">渠道邀请</view>
+			<view  style="flex:1" @click="go3">用户邀请</view>
+		 </view>
+		 
+		 <view class="content">
+		 	<canvas canvas-id="myCanvas" id="canvas"></canvas>
+		 	<view>
+		 		<image :src="src" alt=""></image>
+		 		<button @tap="save">保存图片</button>
+		 	</view>
+		 </view>
+		 
+		 
+		 
 	</view>
+	
 </template>
 
 <script>
@@ -13,10 +28,33 @@
 		 data() {
 			return {
 			  src:"",
-			  bgSrc:"../../static/bg.png"
+			  bgSrc:"../../static/bg.png",
+			  level:"",
 			}
 		},
 		methods:{
+			go1:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/wxReceipt?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			go2:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/channel?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			go3:function()
+			{
+				uni.navigateTo({
+					url:"../../pages/wx/userInvitation?type="+parseInt(Math.random()*2,10)
+				})
+			},
+			
+			
+			
+			
 			save(){
 				uni.showLoading({
 					title: '图片保存中...',
@@ -62,12 +100,19 @@
 			
 			}   
 		},
-		onLoad() {
+		onLoad(e) {
+			
+			console.log("你好,这是在wx页面获取的level"+e.level);
+			
 			var that=this;
 			uni.getStorage({
 				key:"shopObj",
 				success(res){
 					let shopObj=JSON.parse(res.data);
+					
+					
+					console.log("你好,我获取的level是"+shopObj.level);
+					that.level=shopObj.level;
 					
 					let req="shopName="+shopObj.shopName+"%26shopId="+shopObj.shopId+"%26marchantId="+shopObj.merchantId;
 		
@@ -81,6 +126,9 @@
 </script>
 
 <style scoped>
+	page{
+		background:#f2f2f2;
+		}
 	.content{
 		padding: 0;
 		background: rgb(15, 174, 255);

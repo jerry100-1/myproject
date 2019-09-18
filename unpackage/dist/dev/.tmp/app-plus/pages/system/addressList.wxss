@@ -1,27 +1,27 @@
 
-.content.data-v-6771b683{
+.content.data-v-6e223bf3{
 	background: #f2f2f2;
 	padding: 0;
 }
-.list.data-v-6771b683{
+.list.data-v-6e223bf3{
 	background: #fff;
 	font-size: 26rpx;
 	margin-bottom: 20rpx;
 }
-.list>view.data-v-6771b683{
+.list>view.data-v-6e223bf3{
 	padding:30rpx 30rpx 0;
 	margin-bottom: 20rpx;
 }
-.list>view.bottom.data-v-6771b683{
+.list>view.bottom.data-v-6e223bf3{
 	padding-bottom: 30rpx;
 }
-.list .border.data-v-6771b683{
+.list .border.data-v-6e223bf3{
 	padding-top: 0;
 	border-bottom: 1px solid #eee;
 	padding-bottom: 20rpx;
 	margin-bottom: 0;
 }
-.list .border text.data-v-6771b683{
+.list .border text.data-v-6e223bf3{
 	height: 72rpx;
 	line-height: 1.4;
 	-webkit-line-clamp: 2;
@@ -30,19 +30,18 @@
 	-o-text-overflow: ellipsis;
 	   text-overflow: ellipsis;
 }
-.list label.data-v-6771b683{
+.list label.data-v-6e223bf3{
 	margin-right: 20rpx;
 }
-.list image.data-v-6771b683{
+.list image.data-v-6e223bf3{
 	width:28rpx;
 	height:28rpx;
 	vertical-align: middle;
 	margin-right: 10rpx;
 }
-.add.data-v-6771b683{
+.add.data-v-6e223bf3{
 	width:525rpx;
-	-webkit-border-radius: 20rpx;
-	        border-radius: 20rpx;
+	border-radius: 20rpx;
 	height:72rpx;
 	text-align: center;
 	background: #EE3535;

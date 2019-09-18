@@ -42,12 +42,12 @@
 						</view>
 						<view style="display:flex;flex-wrap:wrap;flex:1;">
 							<view style="margin-left:15upx;width:100%;">
-								<text style="width:50%;float:left;display:inline-block;vertical-align:middle;height:40upx;line-height:40upx;">{{item.companyName}}</text>
-								<text style="font-size:120%;color:red;width:30%;float:right;text-align:right;display:inline-block;vertical-align:middle;height:40upx;line-height:40upx;">
-									{{item.ditchId==4?'C(事业部)':item.ditchId==3?'B (互信版)':item.ditchId==2?'A2(互爱版)':'A1(愉悦版)'}}
+								<text style="width:40%;float:left;display:inline-block;vertical-align:middle;height:40upx;line-height:40upx;text-overflow:ellipsis;">{{item.companyName}}</text>
+								<text style="font-size:120%;color:red;width:50%;float:right;text-align:right;display:inline-block;vertical-align:middle;height:40upx;line-height:40upx;">
+									{{item.ditchId==4?'C(运营商)':item.ditchId==3?'B (渠道商)':item.ditchId==2?'A(联盟商家)':'A(联盟商家)'}}
 								</text>
 							</view>
-							<view style="margin-left:15upx;margin-top:10upx;">行业类别:美妆个护</view>
+							<view style="margin-left:15upx;margin-top:10upx;">行业类别:{{item.typeName}}</view>
 							<!-- <view style="margin-left:15upx;">实体店:有</view> -->
 						     <view style="margin-left:15upx;margin-top:10upx;">
 								<text class="fixWidth">实体店铺:&nbsp;&nbsp;{{item.existsShop==1?'有':'无'}}</text>
@@ -55,7 +55,7 @@
 							</view>
 							<!-- <view style="margin-left:15upx;">商户等级:{{item.ditchId==4?'C(事业部)':item.ditchId==3?'B (互信版)':item.ditchId==2?'A2(互爱版)':'A1(愉悦版)'}}</view> -->
 							<view style="width:100%;flex-direction:row;display:flex;flex-wrap:nowrap;margin-top:10upx;">
-								<view style="margin-left:15upx;width:30%;">联系人:{{item.contactsName}}</view>
+								<view style="margin-left:15upx;width:40%;white-space: nowrap;">联系人:{{item.contactsName}}</view>
 								<text style="margin-left:15upx;width:60%;display:flex;flex-wrap:nowrap;">
 									联系电话:{{item.contactsPhone}}
 									<button type="primary" class="subcomit" v-if="enterType==3" @tap="sub(item.marchantId)">重新提交</button>
@@ -78,19 +78,19 @@
 							
 							<view class="isFront" style="margin-left:15upx;margin-top:10upx;">
 								<text class="fixWidth">线下支付:{{item.isFront==1?'需要':'不需要'}}</text>
-								<picker style="margin-left:-30upx;" mode="selector" :data-identity="item.shopIdentity" :range="isFrontArr" @change="isFrontArrChange" class="edit" v-if="shopObj.merchantId==item.marchantId">
+								<picker style="margin-left:-10upx;" mode="selector" :data-identity="item.shopIdentity" :range="isFrontArr" @change="isFrontArrChange" class="edit" v-if="shopObj.merchantId==item.marchantId">
 									<view>修改</view>
 								</picker>
 							</view>
 							<view style="margin-left:15upx;margin-top:15upx;" v-if="item.isFront==1">
-								<text class="fixWidth">支付方式:{{item.payment==1?"联盟支付":"普通支付"}}</text>
-								<picker style="margin-left:-20upx;position:relative;top:-30upx;"  mode="selector" :data-identity="item.shopIdentity" :range="paymentArray" @change="changePayment" class="edit" v-if="shopObj.merchantId==item.marchantId">
-									<view style="">修改</view>
+								<text class="fixWidth" style="white-space:nowrap;">支付方式:{{item.payment==1?"联盟支付":"普通支付"}}</text>
+								<picker style="margin-left:10upx;"  mode="selector" :data-identity="item.shopIdentity" :range="paymentArray" @change="changePayment" class="edit" v-if="shopObj.merchantId==item.marchantId">
+									<view>修改</view>
 								</picker>
 						
 							</view>
-							<view class="isFront" style="margin-left:15upx;"  v-if="item.isFront==1&&(item.shopIdentity==2||item.shopIdentity==3)">
-								<text  class="fixWidth">联盟经费:{{item.linePayRatio==150?'15%':'8%'}}</text>
+							<view class="isFront" style="margin-left:15upx;"  v-if="item.isFront==1&&(item.shopIdentity==2||item.shopIdentity==3)&&item.payment==1">
+								<text  class="fixWidth" style="margin-top:15upx;">联盟经费:{{item.linePayRatio==150?'15%':'8%'}}</text>
 								<picker style="margin-left:-30upx;" :data-identity="item.shopIdentity" mode="selector" :range="allianceFunds" @change="confirmFunds" class="edit" v-if="shopObj.merchantId==item.marchantId">
 									<view>修改</view>
 								</picker>
@@ -100,8 +100,14 @@
 							<view style="margin-left:15upx;color:#f38989;visibility:hidden;">
 								这段文字不起作用
 							</view>
-							<view style="margin-left:15upx;color:#f38989;padding-bottom:5upx;">
-								备注:用户身份可修改升级!
+							<view v-if="item.shopIdentity==1" style="margin-left:15upx;color:#f38989;padding-bottom:5upx;">
+								备注:商户身份可修改升级！
+							</view>
+							<view v-if="item.shopIdentity==2" style="margin-left:15upx;color:#f38989;padding-bottom:5upx;">
+								备注:支付方式和联盟经费可修改！
+							</view>
+							<view v-if="item.shopIdentity==3" style="margin-left:15upx;color:#f38989;padding-bottom:5upx;">
+								备注:商户身份、支付方式和联盟经费可修改！
 							</view>
 							
 						</view>
@@ -111,7 +117,7 @@
 							<text>10个全额B类,已招募 <text class="color">{{item.b}}</text>个,剩余可招募<text class="color">{{item.bsurplus}}</text>个</text>
 						</view>
 						<view :class="{marginTop:item.ditchId>3}">
-							<text>10000个全额A1类,已招募 <text class="color">{{item.a1}}</text>个,剩余可招募<text class="color">{{item.surplus}}</text>个</text>
+							<text>10000个全额A类,已招募 <text class="color">{{item.a1}}</text>个,剩余可招募<text class="color">{{item.surplus}}</text>个</text>
 						</view>
 					</view>
 					<view class="item" v-if="item.ditchId>1">
@@ -275,8 +281,11 @@
 						shopIdentity:e.currentTarget.dataset.identity
 					},
 					success(d){
-						console.log(d)
-						that.dataList[0].linePayRatio=d.linePayRatio
+						console.log(d);
+						console.log("你好,你选择的支付方式是"+d.payment);
+						//that.dataList[0].linePayRatio=d.linePayRatio
+					that.dataList[0].payment=d.payment;
+					
 					}
 				})
 				
@@ -410,33 +419,27 @@
 					console.log("你好,我获取的shopObj是"+that.shopObj)
 					console.log("你好,我获取的mechardId是"+that.shopObj.merchantId);
 					
-					
+					//1c2b3a
 					if(that.shopObj.level==1){
 						that.level=[{
 								text:"全部直属",
 								index:""
 							},{
-								text:"B(互信版)",
+								text:"B(渠道商)",
 								index:"3"
 							},{
-								text:"A2(互爱版)",
+								text:"A(联盟商家)",
 								index:"2"
-							},{
-								text:"A1(愉悦版)",
-								index:"1"
 							}]
 					}else if(that.shopObj.level==2){
 						that.level=[{
 								text:"全部",
 								index:""
 							},{
-								text:"A2(互爱版)",
+								text:"A(联盟商家)",
 								index:"2"
-							},{
-								text:"A1(愉悦版)",
-								index:"1"
 							}]
-					}else if(that.shopObj.levelName="A1"){
+					}else if(that.shopObj.levelName="A"){
 						that.level=[{
 							index:""
 						}]

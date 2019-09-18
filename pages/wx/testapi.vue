@@ -1,6 +1,9 @@
 <template>
 	<view>
-		
+		 <view>
+
+			 {{assessInfo.logistics< 2 ?"差":assessInfo.logistics==2?'一般':assessInfo.logistics?"好":"非常好"}}
+		 </view>
 	</view>
 </template>
 
@@ -11,7 +14,10 @@
 			return{
 				time:"",
 				shopObj:"",
-				merchantId:""
+				merchantId:"",
+				assessInfo:{
+					logistics:2
+			     }
 			}
 		},
 		onLoad:function()

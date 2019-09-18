@@ -49,7 +49,8 @@ const ajax2 = (opt) => {
     opt.success = opt.success || function () {};
     uni.request({
 		//66,65,62,http://192.168.1.164:9996/http://120.79.26.124:9995测试地址。http://120.79.26.124:9997正式地址
-        url: "http://192.168.1.166:9996/lyx_business" + opt.url,
+        // url: "http://192.168.1.166:9996/lyx_business" + opt.url,
+		url:"http://192.168.1.166:9996/lyx_business"+opt.url,
         data: {
 			"sign": sign,
 			"t":opt.data,

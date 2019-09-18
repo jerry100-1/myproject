@@ -1,7 +1,7 @@
 <template>
     <view class="content">
 		<view class="img-group">
-			<image src="../../static/logo@2x.png" alt="" class="logo"></image>
+			<image src="../../static/app_icon/app_icon@96x96.png" alt="" class="logo"></image>
 		</view>
         <view class="input-group">
             <view class="input-row border">
@@ -50,6 +50,8 @@
 
 			checkboxChange(e){
 				this.checkArr=e.detail.value;
+				
+				console.log("你好,当前的detail是"+e.detail.value);
 			},
             bindLogin() {
                 /**
@@ -88,7 +90,7 @@
 				}else{
 					
 				}
-			
+		
 				//登录
 				this.$ajax({
 					url:"/system_manager/login",
@@ -98,15 +100,25 @@
 						console.log("用户登录了----------------------------------");
 						console.log("wo获取的d的数据是------"+d);
 						
+						that.$ajax({
+							url:"/token/get",
+							method:"POST",
+							data:{
+								merchantId:d.merchantId
+							},success(req){
+								console.log(req,"s");
+								uni.setStorageSync("Token",req);
+								uni.setStorage({
+									key:"shopObj",
+									data:JSON.stringify(d)
+								})
+								uni.setStorageSync('phone', d.phone||"")
+								uni.reLaunch({
+								    url: '../main/main',
+								})
+							}
+						})
 						
-						uni.setStorage({
-							key:"shopObj",
-							data:JSON.stringify(d)
-						})
-						uni.setStorageSync('phone', d.phone||"")
-						uni.reLaunch({
-						    url: '../main/main',
-						})
 						
 					}
 				})

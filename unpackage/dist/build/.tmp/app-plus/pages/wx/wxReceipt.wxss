@@ -1,9 +1,12 @@
 
-.content.data-v-b1afed58{
+page.data-v-4b45c903{
+	background:#f2f2f2;
+}
+.content.data-v-4b45c903{
 	padding: 0;
 	background: rgb(15, 174, 255);
 }
-#canvas.data-v-b1afed58{
+#canvas.data-v-4b45c903{
 	width: 494rpx;
 	height: 726rpx;
 	margin: 0 auto;
@@ -13,13 +16,13 @@
 	left:-9999999999px;
 	background: #00BFFF;
 }
-.content image.data-v-b1afed58{
+.content image.data-v-4b45c903{
 	width:380rpx;
 	height:380rpx;
 	margin: 0 auto;
 	opacity: 1 !important;
 }
-.content>view.data-v-b1afed58{
+.content>view.data-v-4b45c903{
 	width:686rpx;
 	height:638rpx;
 	background: #fff;
@@ -31,7 +34,7 @@
 	margin-top: 40rpx;
 	text-align: center;
 }
-button.data-v-b1afed58 {
+button.data-v-4b45c903 {
 	width: 230rpx;
 	height: 80rpx;
 	text-align: center;

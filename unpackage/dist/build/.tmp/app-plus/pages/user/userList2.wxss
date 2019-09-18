@@ -1,43 +1,43 @@
 
-.content.data-v-36f96b62{
+.content.data-v-1a0d02a2{
 	background: #f9f9f9;
 	padding: 0;
 }
-.top.data-v-36f96b62{
+.top.data-v-1a0d02a2{
 	position: fixed;
 	width:100%;
 	padding: 30rpx;
 	background: #fff;
 }
-.top image.data-v-36f96b62{
+.top image.data-v-1a0d02a2{
 	width:72rpx;
 	height:72rpx;
 	border-radius: 50%;
 	vertical-align: middle;
 	margin-right: 30rpx;
 }
-.subtitle.data-v-36f96b62{
+.subtitle.data-v-1a0d02a2{
 	font-size: 20rpx;
 	color:#999;
 }
-.color.data-v-36f96b62{
+.color.data-v-1a0d02a2{
 	color:#EE3435;
 }
-.top.data-v-36f96b62{
+.top.data-v-1a0d02a2{
 	font-size: 24rpx;
 }
-.font_X.data-v-36f96b62{
+.font_X.data-v-1a0d02a2{
 	font-size: 28rpx;
 	margin-right: 10rpx;
 }
-.top>view.data-v-36f96b62{
+.top>view.data-v-1a0d02a2{
 	vertical-align: middle;
 	display: inline-block;
 }
-.list.data-v-36f96b62{
+.list.data-v-1a0d02a2{
 	margin-top: 172rpx;
 }
-.item_list>view.data-v-36f96b62{
+.item_list>view.data-v-1a0d02a2{
 	background: #fff;
 	height:80rpx;
 	line-height: 80rpx;
@@ -51,7 +51,7 @@
 	display: flex;
 	width:100%;
 }
-.item_list>view>text.data-v-36f96b62{
+.item_list>view>text.data-v-1a0d02a2{
 	-webkit-box-flex:1;
 	-webkit-flex:1;
 	    -ms-flex:1;

@@ -23,7 +23,7 @@
 					
 				</view>
 			
-				<view style="margin-top:20upx;">
+				<view style="margin-top:20upx;display:none">
 					<text>商品图片</text>
 					<view class="right" style="margin-left:100upx;">
 						<view  class="imgs" v-for="(item,index) in proImgs" v-if="proImgs.length>0" :key="index">
@@ -40,6 +40,15 @@
 				</view>
 				
 			</view>
+			
+			<view>
+				<text>店铺图标</text>
+				<image :src="upSrc||defSrc" class="addImg"  @tap="proImgsChoose(6)"></image>
+				<text class="grey">非必填,若未上传,则显示默认图标</text>
+			</view>
+			
+			
+			
 			
 			<view>
 				<text>门店门头照片</text>
@@ -124,12 +133,12 @@
 			<textarea v-model="checkNote" placeholder="请输入您的留言" />
 		</view>
 		<view class="foot">
-			<checkbox-group @change="checkboxChange" class="inline">
+			<checkbox-group @change="checkboxChange" class="" style="display:inline-block;vertical-align:middle;">
 				<label class="checkbox"><checkbox :checked="isCheck" />
 					<text class="text">我同意</text>
 				</label>
 			</checkbox-group>
-			<text @tap="url" class="color">《乐驿享·生活圈商户入驻协议》</text>
+			<text @tap="url" class="color" style="display:inline-block;vertical-align:middle;">《乐驿享·生活圈商户入驻协议》</text>
 			<button @tap="save">立即申请入驻</button>
 		</view>
 	</view>
@@ -150,6 +159,7 @@
 				takeP:[{proName:""}],//退货省
 				tpIndex:0,
 				takeC:[{proName:""}],//退货市
+				upSrc:"",//店铺logo
 				tcIndex:0,
 				takeX:[{proName:""}],//退货区
 				txIndex:0,//
@@ -232,6 +242,94 @@
 					},
 				});
 			},
+			
+			//店铺图片选择
+			proImgsChoose(type){
+				let that=this;
+				uni.chooseImage({
+					count: 1, //默认9
+					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+					success: function (res) {
+						if(that.limit(res.tempFiles[0].size)>1){
+							uni.showToast({
+								title:"图片大小不能超过1M",
+								icon:"none"
+							})
+							return
+						}
+						that.$ajax({
+							uploadFile:true,
+							formData:{
+								'fileName':"/marchant/",
+							},
+							filePath:res.tempFilePaths[0],
+							success(d){
+								if(type==1){
+									that.businessLicence=d
+								}else if(type==2){
+									that.idCardB=d
+								}else if(type==3){
+									that.idCardA=d
+								}else if(type==4){
+									that.mendianmentou=d;
+								}else if(type==5)
+								{
+									that.dianneihuanjing=d;
+								}else if(type==6)
+								{
+									that.upSrc=d;
+								}
+							}
+						})
+						// //转base64
+						// pathToBase64(res.tempFilePaths[0])
+						//   .then(base64 => {
+						// 	  that.uploadImg(base64,type)
+						//   })
+						//   .catch(error => {
+						// 	console.error(error)
+						//   })
+					}
+				});
+			},
+			//店铺图片上传
+			uploadImg(base64,type){
+				let that=this;
+				that.$ajax({
+					url:"/commonUpload/upload",
+					method:"POST",
+					data:{
+						base64Img:base64,
+						fileName:"/marchant/",
+						artworkMaster:1
+					},success(d){
+						if(type==1){
+							that.businessLicence=d
+						}else if(type==2){
+							that.idCardB=d
+						}else if(type==3){
+							that.idCardA=d
+						}else if(type==4){
+							that.mendianmentou=d;
+						}else if(type==5)
+						{
+							that.dianneihuanjing=d;
+						}else if(type==6)
+						{
+							that.upSrc=d;
+						}
+					}
+				})
+			},
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			//商品图片上传
 		// 	uploadImg(base64,type){
 		// 		let that=this;
@@ -344,7 +442,7 @@
 					||that.societyId==""||that.bankEnrollName==""||that.mainBankNum==""||that.bankName==""||that.bankP[that.bpIndex].proName==""
 					||that.bankC[that.bpCndex].proName==""||that.takeP[that.tpIndex].proName==""||that.takeC[that.tcIndex].proName==""||that.takeX[that.txIndex].disName==""
 					||that.bankP[that.bpIndex].code==""||that.bankC[that.bpCndex].code==""||that.takeP[that.tpIndex].code==""||that.takeX[that.txIndex].code==""
-					||that.takeAddress==""||that.takeContactsName==""||that.takeContactsPhone==""||that.checkNote=="")
+					||that.takeAddress==""||that.takeContactsName==""||that.takeContactsPhone=="")
 				{
 					uni.showToast({
 						title:"请保证信息填写完整",
@@ -401,14 +499,13 @@
 							existsShop:that.prevObj.existsShop,//1 解决
 							latitude:that.prevObj.latitude,//纬度 //1
 							longitude:that.prevObj.longitude,//经度 //1
-							displayImg:that.prevObj.displayImg,//1  //解决
+							displayImg:that.upSrc,//1  //解决
 							idCardA:that.idCardA,//2 解决
 							idCardB:that.idCardB,//2解决
 							isFront:that.prevObj.isFront,//1  解决
 							linePayRatio:that.prevObj.linePayRatio,//1  解决
 							mainBankNum:that.mainBankNum,//2   解决
 							id:that.shopObj.merchantId,//2 
-					
 							marchantType:that.prevObj.marchantType,//1
 							servicePhone:that.prevObj.servicePhone,//1
 							shopName:that.prevObj.shopName,//1
@@ -458,7 +555,7 @@
 						
 						console.log("latitude:"+that.prevObj.latitude);
 						console.log("longitude:"+that.prevObj.longitude);
-						console.log("displayImg:"+that.prevObj.displayImg);
+						console.log("displayImg:"+that.upSrc);
 						
 						console.log("idCardA:"+that.idCardA);
 						console.log("idCardB:"+that.idCardB);
@@ -658,72 +755,83 @@
 			},
 			
 			//店铺图片选择
-			proImgsChoose(type){
-				let that=this;
-				uni.chooseImage({
-					count: 1, //默认9
-					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-					success: function (res) {
-						if(that.limit(res.tempFiles[0].size)>1){
-							uni.showToast({
-								title:"图片大小不能超过1M",
-								icon:"none"
-							})
-							return
-						}
-						that.$ajax({
-							uploadFile:true,
-							formData:{
-								'fileName':"/marchant/",
-							},
-							filePath:res.tempFilePaths[0],
-							success(d){
-								if(type==1){
-									that.businessLicence=d
-								}else if(type==2){
-									that.idCardB=d
-								}else if(type==3){
-									that.idCardA=d
-								}else if(type==4){
-									that.mendianmentou=d;
-								}else if(type==5)
-								{
-									that.dianneihuanjing=d;
-								}
-							}
-						})
-						// //转base64
-						// pathToBase64(res.tempFilePaths[0])
-						//   .then(base64 => {
-						// 	  that.uploadImg(base64,type)
-						//   })
-						//   .catch(error => {
-						// 	console.error(error)
-						//   })
-					}
-				});
-			},
-			//店铺图片上传
-			uploadImg(base64,type){
-				let that=this;
-				that.$ajax({
-					url:"/commonUpload/upload",
-					method:"POST",
-					data:{
-						base64Img:base64,
-						fileName:"/marchant/",
-						artworkMaster:1
-					},success(d){
-						if(type==1){
-							that.businessLicence=d
-						}else if(type==2){
-							that.idCardB=d
-						}else{
-							that.idCardA=d
-						}
-					}
-				})
-			},
+			// proImgsChoose(type){
+			// 	let that=this;
+			// 	uni.chooseImage({
+			// 		count: 1, //默认9
+			// 		sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+			// 		success: function (res) {
+			// 			if(that.limit(res.tempFiles[0].size)>1){
+			// 				uni.showToast({
+			// 					title:"图片大小不能超过1M",
+			// 					icon:"none"
+			// 				})
+			// 				return
+			// 			}
+			// 			that.$ajax({
+			// 				uploadFile:true,
+			// 				formData:{
+			// 					'fileName':"/marchant/",
+			// 				},
+			// 				filePath:res.tempFilePaths[0],
+			// 				success(d){
+			// 					if(type==1){
+			// 						that.businessLicence=d
+			// 					}else if(type==2){
+			// 						that.idCardB=d
+			// 					}else if(type==3){
+			// 						that.idCardA=d
+			// 					}else if(type==4){
+			// 						that.mendianmentou=d;
+			// 					}else if(type==5)
+			// 					{
+			// 						that.dianneihuanjing=d;
+			// 					}else if(type==6)
+			// 					{
+			// 						that.upSrc=d;
+			// 					}
+			// 				}
+			// 			})
+			// 			// //转base64
+			// 			// pathToBase64(res.tempFilePaths[0])
+			// 			//   .then(base64 => {
+			// 			// 	  that.uploadImg(base64,type)
+			// 			//   })
+			// 			//   .catch(error => {
+			// 			// 	console.error(error)
+			// 			//   })
+			// 		}
+			// 	});
+			// },
+			// //店铺图片上传
+			// uploadImg(base64,type){
+			// 	let that=this;
+			// 	that.$ajax({
+			// 		url:"/commonUpload/upload",
+			// 		method:"POST",
+			// 		data:{
+			// 			base64Img:base64,
+			// 			fileName:"/marchant/",
+			// 			artworkMaster:1
+			// 		},success(d){
+			// 			if(type==1){
+			// 				that.businessLicence=d
+			// 			}else if(type==2){
+			// 				that.idCardB=d
+			// 			}else if(type==3){
+			// 				that.idCardA=d
+			// 			}else if(type==4){
+			// 				that.mendianmentou=d;
+			// 			}else if(type==5)
+			// 			{
+			// 				that.dianneihuanjing=d;
+			// 			}else if(type==6)
+			// 			{
+			// 				that.upSrc=d;
+			// 			}
+			// 		}
+			// 	})
+			// },
 			//图片的删除
 			del(index,type){
 				let that=this;
@@ -753,7 +861,7 @@
 			console.log("你好,这是从上个页面传过来的数据-------");
 			console.log("上个页面拿过来的店铺名称shopName是"+obj.shopName);//1
 			console.log("上个页面拿过来的行业类别marchantType是"+obj.marchantType);//2
-			console.log("上个页面拿过来的displayImg是"+obj.displayImg);//3
+			//console.log("上个页面拿过来的displayImg是"+obj.displayImg);//3
 			console.log("上个页面拿过来的客服电话servicePhone是"+obj.servicePhone);//4
 			console.log("上个页面拿过来的客服微信weixin是"+obj.weixin);//5
 			console.log("上个页面拿过来的是否有实体店铺existsShop是"+obj.existsShop);//6
@@ -803,6 +911,7 @@
 									that.proImgs=d.otherQualification;
 									that.idCardB=d.idCardB;
 									that.idCardA=d.idCardA;
+									that.upSrc=d.displayImg;
 									that.societyId=d.societyId;
 									that.bankEnrollName=d.bankEnrollName;
 									that.mainBankNum=d.mainBankNum;
@@ -826,6 +935,21 @@
 </script>
 
 <style scoped>
+	.addImg{
+		width:100upx;
+		height:100upx;
+		vertical-align: top;
+		margin-right: 10upx;
+	}
+	.grey{
+		color:#999;
+		vertical-align: bottom;
+		position: relative;
+		bottom: -32px;
+	}
+	
+	
+	
 	.del{
 		font-size: 20upx;
 		line-height: 36upx;

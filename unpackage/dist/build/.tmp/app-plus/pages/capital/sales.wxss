@@ -1,42 +1,42 @@
 
-.content.data-v-2145d1e0{
+.content.data-v-6f2ff759{
 	background: #f2f2f2;
 	padding: 0;
 }
-.color.data-v-2145d1e0{
+.color.data-v-6f2ff759{
 	color:#EE3535;
 }
-.top.data-v-2145d1e0{
+.top.data-v-6f2ff759{
 	line-height: 88rpx;
 	padding: 0 30rpx;
 }
-.item_list.data-v-2145d1e0{
+.item_list.data-v-6f2ff759{
 	height: 280rpx;
 	background: #fff;
 	border-top:1px solid #eee;
 }
-.item_list>view.data-v-2145d1e0{
+.item_list>view.data-v-6f2ff759{
 	padding: 0 30rpx;
 	font-size: 22rpx;
 	margin-top: 25rpx;
 }
-.item_list>view>.r.data-v-2145d1e0{
+.item_list>view>.r.data-v-6f2ff759{
 	color:#EE3535;
 }
-.item_list image.data-v-2145d1e0{
+.item_list image.data-v-6f2ff759{
 	width:164rpx;
 	
 	height:164rpx;
 	margin-right: 18rpx;
 }
-.box>view.data-v-2145d1e0{
+.box>view.data-v-6f2ff759{
 	display: inline-block;
 	vertical-align: top;
 }
-.box .left.data-v-2145d1e0{
+.box .left.data-v-6f2ff759{
 	width:478rpx
 }
-.title.data-v-2145d1e0{
+.title.data-v-6f2ff759{
 	height: 64rpx;
 	display: -webkit-box;
 	margin: 0 auto;
@@ -48,7 +48,7 @@
 	   text-overflow: ellipsis;
 	margin-bottom: 70rpx;
 }
-.price.data-v-2145d1e0{
+.price.data-v-6f2ff759{
 	color:#f90;
 }
 

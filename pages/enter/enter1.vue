@@ -6,11 +6,11 @@
 				<text>店铺名称</text>
 				<input type="text" v-model="shopName" />
 			</view>
-			<view>
+			<!-- <view>
 				<text>店铺图标</text>
 				<image :src="upSrc||defSrc" class="addImg"  @tap="proImgsChoose"></image>
 				<text class="grey">非必填,若未上传,则显示默认图标</text>
-			</view>
+			</view> -->
 			<view class="border">
 				<text>行业类别</text>
 				<picker :range="marchantType" @change="shopChange" range-key="typename">
@@ -71,7 +71,7 @@
 				</view>
 			</view>
 			<view>
-				<text>商户简称(新增)</text>
+				<text>商户简称</text>
 				<input type="text" v-model="businessAbbreviation" />
 			</view>
 			
@@ -96,23 +96,23 @@
 			</view>
 			<view>
 				<text>联系电话</text>
-				<input style="margin-left:80upx;" type="number" v-model="contactsPhone" maxlength="11"/>
+				<input style="margin-left:80upx;"  v-model="contactsPhone" maxlength="11"/>
 			</view>
 			
 			<view>
-				<text>身份证姓名(新增)</text>
+				<text>身份证姓名</text>
 				<input style="margin-left:50upx;" type="text" v-model="IDCardName" />
 			</view>
 			
 			<view>
-				<text>身份证号码(新增)</text>
+				<text>身份证号码</text>
 				<input style="margin-left:40upx;" type="text" v-model="IDCardNumber" maxlength="20"/>
 			</view>
 			
 			
 			<view>
-				<text>身份证有效期(新增)</text>
-				<input type="text" v-model="validateIDTime" maxlength="20"/>
+				<text>身份证有效期</text>
+				<input type="text" v-model="validateIDTime"/>
 			</view>
 		
 			
@@ -145,9 +145,7 @@
 			<view v-if="myflag1">
 				<text class="firstLine1" style="">说明文字</text>
 				<view class="firstLine">
-					小微商户自收款,申请入驻成功的微信特约商户,通过乐驿享的扫脸支付设备进行线下收款,通过乐驿享开店进行线上交易
- 					,订单交易成功后,联盟经费支付给乐驿享平台作跨界盈利分配,微信收取0.38%，0.6%手续费(用户分享雇佣及时到账)
-                    剩余销售金额全部归属商户,及时到账至商户的收款微信账号
+					申请入驻成功的微信小微商户，通过乐驿享的扫脸支付设备进行线下收款（该商户身份在乐驿享可上传商品，但无法线上支付交易），订单交易成功后，微信收取0.38%-0.6%手续费，剩余销售金额全部归属商户，即时到账至商户的收款微信账号；
 				</view>
 				
 			</view>
@@ -166,9 +164,8 @@
 			<view v-if="myflag3">
 				<text class="firstLine1" style="">说明文字</text>
 				<view class="firstLine">
-					特约商户代收款,申请入驻成功的微信特约商户,通过乐驿享的扫脸支付设备进行线下收款,通过乐驿享开店进行线上交易
-					,订单交易成功后,联盟经费支付给乐驿享平台作跨界盈利分配,微信收取0.38%，0.6%手续费(用户分享雇佣及时到账)
-			        剩余销售金额全部归属商户,及时到账至商户的收款微信账号
+					特约商户代收款
+					由乐驿享官方特约商户进行代收款；商户通过乐驿享的扫脸支付设备进行线下收款，通过乐驿享开店进行线上交易，订单交易成功后，普通支付的微信手续费由商户承担，联盟支付的联盟经费支付给乐驿享平台作跨界盈利分配（微信手续费由乐驿享承担），（用户分享佣金即时到账），剩余销售金额全部归属商户，商户发起提现，T+0到账；
 			
 				</view>
 				
@@ -182,21 +179,27 @@
 			
 			<view>
 				 <text class="inlineTextBn inlineTextBn1">线下支付</text>
-				 <view class="uni-list inlineTextBn inlineTextBn2" style="border:none;">
-				 	  <view class="uni-list-cell">
-				 		  <view class="uni-list-cell-db mylist"  style="width:300upx;border:none;">
-				 			  <picker ref="mypicker1" :class="[myflag1==true? 'noneClass':'displayClass']"   @change="bindPickerChanges3" range-key="name"  :data-id="objectArray3[index3].id" :value="index3" :range="objectArray3">
-				 				 <text class="uni-input" style="width:300upx;">{{objectArray3[index3].name}}</text>
+				 <view  v-if="!myFlag100" class="uni-list inlineTextBn inlineTextBn2" style="border:none;">
+					  <view class="uni-list-cell">
+						  <view class="uni-list-cell-db mylist"  style="width:300upx;border:none;">
+							  <picker ref="mypicker1" :class="[myflag1==true? 'noneClass':'displayClass']"   @change="bindPickerChanges3" range-key="name"  :data-id="objectArray3[index3].id" :value="index3" :range="objectArray3">
+								 <text class="uni-input" style="width:300upx;">{{objectArray3[index3].name}}</text>
 								  <text  class="addArrow iconfont icon-xiangxiajiantou" style="margin-left:100upx;"></text>
-				 				 <!-- 还是建议用input保存,可能picker更新不及时 -->
-				 				<!-- <input type="text" :value="objectArray[index].id" hidden/> -->
-				 			 </picker>
-				 		  </view>
-				 	  </view>
+								 <!-- 还是建议用input保存,可能picker更新不及时 -->
+								<!-- <input type="text" :value="objectArray[index].id" hidden/> -->
+							 </picker>
+						  </view>
+					  </view>
 				  </view>
-				 
-				 
-				 
+				  
+				  
+				  <view v-if="myFlag100" class="uni-list inlineTextBn inlineTextBn2" style="border:none;">
+				  	  需要
+				  </view>
+				  
+				  
+				  
+				  
 				 
 			</view>
 			
@@ -213,7 +216,7 @@
 			
 			<view ref="zhifuView" v-if="isFront==1">
 				<text class="inlineTextBn inlineTextBn1">支付方式</text>
-				<view class="uni-list inlineTextBn inlineTextBn2" style="border:none;">
+				<view v-if="!myFlag101" class="uni-list inlineTextBn inlineTextBn2" style="border:none;">
 					  <view class="uni-list-cell">
 						  <view class="uni-list-cell-db mylist"  style="width:300upx;border:none;">
 							  <picker ref="mypicker2"   @change="bindPickerChanges2" range-key="name"  :data-bindid="objectArray2[index2].id" :value="index2" :range="objectArray2">
@@ -225,21 +228,28 @@
 						  </view>
 					  </view>
 				 </view>
+				 
+				 
+				 <view v-if="myFlag101" class="uni-list inlineTextBn inlineTextBn2" style="border:none;">
+				 	 普通支付
+				  </view>
+				 
+				 
 			</view>
 			
 			
-			<view v-if="myflag4">
+			<view v-if="myflag4&&isFront==1">
 				<text class="firstLine1" style="visibility:hidden;">说明文字</text>
 				<view class="firstLine firstLine3">
-					  普通支付,即订单交易成功后,微信收取0.38%-0.6%手续费,剩余销售金额全部
-					  归属商户.
+					 联盟支付
+					 联盟支付，即订单交易成功后，联盟经费支付给乐驿享平台，微信收取0.38%-0.6%手续费，剩余销售金额全部归属商户；
 				</view>
 			</view>
-			<view v-if="myflag5">
+			<view v-if="myflag5&&isFront==1">
 				<text class="firstLine1" style="visibility:hidden;">说明文字</text>
 				<view class="firstLine firstLine3">
-					 联盟支付,即订单交易成功后,联盟经费支付给乐驿享平台,微信收取0.38%-0.6%手续费,
-					 剩余销售金额全部归属商户;
+					 普通支付
+					普通支付，即订单交易成功后，微信收取0.38%-0.6%手续费，剩余销售金额全部归属商户；
 				</view>
 			</view>
 			
@@ -248,28 +258,28 @@
 			<view v-if="myflag2">
 				
 	              <!-- 入驻微信的商户全称 -->
-				  <view style="margin-top:20upx;">
+				  <view style="margin-top:20upx;display:none;">
 				  	<text>入驻微信的商户全称</text>
-				  	<input style="margin-left:20upx;" type="number" v-model="settledName"/>
+				  	<input style="margin-left:20upx;"  v-model="settledName"/>
 				  </view>
 				  
 				  <!-- 入驻微信的商户全称 -->
-				  <view style="margin-top:40upx;">
+				  <view style="margin-top:40upx;display:none;">
 				  	<text>微信分配的商户号</text>
-				  	<input style="margin-left:40upx;" type="number" v-model="assignNumber"/>
+				  	<input style="margin-left:40upx;"  v-model="assignNumber"/>
 				  </view>
 				  
 				  <!-- 入驻微信的商户全称 -->
-				  <view style="margin-top:40upx;">
+				  <view style="margin-top:40upx;display:none;">
 				  	<text>微信支付密钥</text>
-				  	<input style="margin-left:90upx;" type="number" v-model="paymentKey"/>
+				  	<input style="margin-left:90upx;"  v-model="paymentKey"/>
 				  </view>
 				  
 				 
 			</view>
 			
 			
-			<view ref="lianmenView" v-if="(myflag2||myflag3)&&isFront==1">
+			<view ref="lianmenView" v-if="(myflag2||myflag3)&&isFront==1&&myflag7">
 				  <view style="margin-top:40upx;">
 				  		<text class="inlineTextBn inlineTextBn1">联盟经费</text>
 				  		<view class="uni-list inlineTextBn inlineTextBn2" style="border:none;">
@@ -320,15 +330,18 @@
 		},
 		data(){
 			return{
+				myFlag100:true,
+				myFlag101:true,
 				changeid:"",
 				//marchantId:"",//修改的id
 				upSrc:"",
 				myflag1:true,
 				myflag2:false,
 				myflag3:false,
-				myflag4:true,
-				myflag5:false,
+				myflag4:false,
+				myflag5:true,
 				myflag6:false,
+				myflag7:false,
 				defSrc:"../../static/capital/my_add_image@2x.png",
 				contactsPhone:"",//联系电话
 				contactsName:"",//联系人
@@ -488,18 +501,22 @@
 					  that.index3=0;
 					  that.payment=2;//支付方式必须改为普通支付
 					  that.index2=1;
-					  that.$nextTick(function(){
-					  	that.$refs.mypicker1.disabled="disabled";
-					  });
-					  that.$nextTick(function(){
-					  	that.$refs.mypicker2.disabled="disabled";
-					  });
+					  that.myFlag100=true;
+					  that.myFlag101=true;
+					  // that.$nextTick(function(){
+					  // 	that.$refs.mypicker1.disabled="disabled";
+					  // });
+					  // that.$nextTick(function(){
+					  // 	that.$refs.mypicker2.disabled="disabled";
+					  // });
 					 
 				  }else if(e.detail.value==1){
 					  that.myflag1=false;
 					  that.myflag2=true;
 					  that.myflag3=false;
 					  that.myflag6=true;
+					  that.myFlag100=false;
+					  that.myFlag101=false;
 					  //选择的是特约商户自收款的用户身份
 					  console.log("你好,你选择的是特约商户自收款");
 					  that.businessIdentity=2;
@@ -509,6 +526,8 @@
 					  that.myflag2=false;
 					  that.myflag3=true;
 					  that.myflag6=true;
+					  that.myFlag100=false;
+					  that.myFlag101=false;
 					  //选择的是特约商户代收款的身份
 					  console.log("你好,你选择的是特约商户代收款");
 					that.businessIdentity=3;
@@ -534,12 +553,21 @@
 					  that.myflag5=false;
 					  that.payment=1;
 					  that.myflag6=false;
-				  }else{//说明选择的是联盟支付
+					  that.myflag7=true;
+					  that.linePayRatio="80";
+					  
+					  console.log("当前的联盟经费是"+that.linePayRatio);
+					  
+				  }else{//说明选择的是普通支付
 				      console.log("你好,你选择的是普通支付!!!");
 					  that.myflag4=false;
 					  that.myflag5=true;
 					  that.payment=2;
 					  that.myflag6=true;
+					  //当选择的是普通支付的时候,是没有联盟经费的,所以that.myflag7=false,此时联盟经费不显示,并且联盟经费为""
+					  that.myflag7=false;
+					  that.linePayRatio="0";
+					 console.log("当前的联盟经费是"+that.linePayRatio);
 				  }
 			 				 // console.log('可以传data-xx:xx',e.currentTarget.dataset.index,'\n默认传过来的是下标：',e.detail.value,'\n也可以传普通json传过来的id等：',e.currentTarget.dataset.id);
 			 },
@@ -577,8 +605,10 @@
 					 if(that.index4==0)
 					 {
 						 that.linePayRatio="80";
+						 console.log("当前的联盟经费是"+that.linePayRatio);
 					 }else{
 						 that.linePayRatio="150";
+						  console.log("当前的联盟经费是"+that.linePayRatio);	
 					 }
 					 
 			 
@@ -704,7 +734,7 @@
 						servicePhone:that.cusPhone,//客服电话10
 						weixin:that.cusWX,//客服微信 11
 						shopName:that.shopName,//店铺名称 12
-						displayImg:that.upSrc,//店铺图标13
+						//displayImg:that.upSrc,//店铺图标13
 						shopSN:that.businessAbbreviation,//商户简称14
 						idName:that.IDCardName,//身份证姓名15
 						idNumber:that.IDCardNumber,//身份证号码16
@@ -765,7 +795,7 @@
 					console.log("提交之前的wxMchid是"+that.assignNumber);//29
 					
 					
-					if(that.shopName==""||that.upSrc==""||that.cusPhone==""||that.cusWX==""||that.businessAbbreviation==""
+					if(that.shopName==""||that.cusPhone==""||that.cusWX==""||that.businessAbbreviation==""
 					||that.companyName==""||that.shopAddress==""||that.IDCardName==""||that.IDCardNumber==""||that.validateIDTime==""
 					||that.contactsName==""||that.contactsPhone==""||that.cusNum==""||that.weixinfeilv=="")
 					{
@@ -879,14 +909,19 @@
 		 				this.marchantId=e.id
 		 			}
 		 			 that=this;
+					 // if(that.businessIdentity==1)
+					 // {
+						//  that.$nextTick(function(){
+						//  	that.$refs.mypicker1.disabled="disabled";
+						//  });
+						//  that.$nextTick(function(){
+						//  	that.$refs.mypicker2.disabled="disabled";
+						//  });
+					 // }
 					 if(that.businessIdentity==1)
 					 {
-						 that.$nextTick(function(){
-						 	that.$refs.mypicker1.disabled="disabled";
-						 });
-						 that.$nextTick(function(){
-						 	that.$refs.mypicker2.disabled="disabled";
-						 });
+						 that.myFlag100=true;
+						 that.myFlag101=true;
 					 }
 					 if(that.isFront==1)
 					 {
